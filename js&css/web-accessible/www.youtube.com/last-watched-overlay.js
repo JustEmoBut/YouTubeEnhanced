@@ -169,7 +169,7 @@ ImprovedTube.lastWatchedOverlay = function () {
 			if (!thumbnail || !thumbnail.isConnected) return;
 			let anchor = thumbnail;
 			if (thumbnail.tagName !== 'A') {
-				anchor = thumbnail.querySelector('a#thumbnail, a.ytd-thumbnail');
+				anchor = thumbnail.querySelector('a#thumbnail, a.ytd-thumbnail') || thumbnail.closest('a[href]');
 			}
 			if (!anchor || !anchor.href) return;
 			const videoId = getVideoId(anchor.href);
@@ -197,9 +197,13 @@ ImprovedTube.lastWatchedOverlay = function () {
 			overlayMap.set(container, videoId);
 		}
 
+		// yt-thumbnail-view-model is the current feed/search/watch markup; ytd-thumbnail and
+		// a#thumbnail are still served on some surfaces, so all three stay.
+		const THUMBNAIL_SELECTOR = 'ytd-thumbnail, a#thumbnail, yt-thumbnail-view-model';
+
 		function collectThumbnailElements () {
 			const set = new Set();
-			document.querySelectorAll('ytd-thumbnail, a#thumbnail').forEach(el => set.add(el));
+			document.querySelectorAll(THUMBNAIL_SELECTOR).forEach(el => set.add(el));
 			return Array.from(set);
 		}
 
@@ -256,7 +260,7 @@ ImprovedTube.lastWatchedOverlay = function () {
 			for (const m of mutations) {
 				if (m.type === 'childList') {
 					for (const n of m.addedNodes) {
-						if (n.nodeType === 1 && (n.matches?.('ytd-thumbnail, a#thumbnail') || n.querySelector?.('ytd-thumbnail, a#thumbnail'))) {
+						if (n.nodeType === 1 && (n.matches?.(THUMBNAIL_SELECTOR) || n.querySelector?.(THUMBNAIL_SELECTOR))) {
 							relevant = true; break;
 						}
 					}
