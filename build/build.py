@@ -26,6 +26,8 @@ import re
 # Helpers
 #---------------------------------------------------------------
 
+FIREFOX_EXTENSION_ID = '{3c6bf0cc-3ae2-42fb-9993-0d33104fdcaf}'
+
 EXCLUDE_TOP_LEVEL = {
 	'.editorconfig',
 	'.idea',
@@ -191,6 +193,12 @@ def firefox():
 			if 'service_worker' in data['background']:
 				del data['background']['service_worker']
 			data['background']['scripts'] = ['background.js']
+
+		# Firefox-only keys, kept out of the root manifest so Chrome does not warn
+		data['browser_specific_settings'] = {
+			'gecko': {'id': FIREFOX_EXTENSION_ID}
+		}
+		data.setdefault('action', {})['default_area'] = 'navbar'
 
 		json_file.seek(0)
 		json.dump(data, json_file, indent=4, sort_keys=True)
