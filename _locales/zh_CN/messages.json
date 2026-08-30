@@ -773,19 +773,19 @@
         "message": "导入设置"
     },
     "improvedtubeButtons": {
-        "message": "ImprovedTube 按钮"
+        "message": "YouTube Enhanced 按钮"
     },
     "improvedtubeIconOnYoutube": {
-        "message": "在 YouTube 上显示 ImprovedTube 图标"
+        "message": "在 YouTube 上显示 YouTube Enhanced 图标"
     },
     "improvedtubeLanguage": {
-        "message": "ImprovedTube 语言"
+        "message": "YouTube Enhanced 语言"
     },
     "improvedTubeSidePanel": {
-        "message": "ImprovedTube 浏览器侧边栏"
+        "message": "YouTube Enhanced 浏览器侧边栏"
     },
     "improvedtubeVersion": {
-        "message": "ImprovedTube 版本"
+        "message": "YouTube Enhanced 版本"
     },
     "improveLogo": {
         "message": "单色徽标"
@@ -1040,7 +1040,7 @@
         "message": "暂停时自动隐藏影院模式"
     },
     "player_cinema_mode_button": {
-        "message": "影院模式（ImprovedTube）"
+        "message": "影院模式（YouTube Enhanced）"
     },
     "player_dont_speed_education": {
         "message": "不要加速（不常见）分类：教育"
@@ -1196,7 +1196,7 @@
         "message": "举报"
     },
     "requirePassword": {
-        "message": "需要密码才能更改 ImprovedTube 设置"
+        "message": "需要密码才能更改 YouTube Enhanced 设置"
     },
     "reset": {
         "message": "重置"
@@ -1259,7 +1259,7 @@
         "message": "上一章节"
     },
     "settings": {
-        "message": "ImprovedTube 设置"
+        "message": "YouTube Enhanced 设置"
     },
     "settingsSuccessfullyImported": {
         "message": "设置导入成功"

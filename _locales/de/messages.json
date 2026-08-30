@@ -24,7 +24,7 @@
     "message": "KI-Zusammenfassungen ausblenden"
   },
   "requirePassword": {
-    "message": "Passwort für Änderung der ImprovedTube-Einstellungen erforderlich"
+    "message": "Passwort für Änderung der YouTube Enhanced-Einstellungen erforderlich"
   },
   "passwordOptions": {
     "message": "Passwort-Optionen"
@@ -51,7 +51,7 @@
     "message": "Beitreten"
   },
   "improvedTubeSidePanel": {
-    "message": "ImprovedTube: Browser-Seitenpanel"
+    "message": "YouTube Enhanced: Browser-Seitenpanel"
   },
   "cursorLighting": {
     "message": "YouTube-Seiten dimmen, außer bei Mausover!"
@@ -792,19 +792,19 @@
     "message": "Einstellungen importieren"
   },
   "ImprovedTube": {
-    "message": "ImprovedTube"
+    "message": "YouTube Enhanced"
   },
   "improvedtubeButtons": {
-    "message": "ImprovedTube-Buttons"
+    "message": "YouTube Enhanced-Buttons"
   },
   "improvedtubeIconOnYoutube": {
-    "message": "ImprovedTube Icon auf YouTube"
+    "message": "YouTube Enhanced Icon auf YouTube"
   },
   "improvedtubeLanguage": {
-    "message": "ImprovedTube"
+    "message": "YouTube Enhanced"
   },
   "improvedtubeVersion": {
-    "message": "ImprovedTube Version"
+    "message": "YouTube Enhanced Version"
   },
   "improveLogo": {
     "message": "Logo: Monochrom!"

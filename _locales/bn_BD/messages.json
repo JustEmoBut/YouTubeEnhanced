@@ -1,6 +1,6 @@
 {
     "about": {
-        "message": "ImprovedTube সম্পর্কে"
+        "message": "YouTube Enhanced সম্পর্কে"
     },
     "accept": {
         "message": "গ্রহণ করুন"
@@ -510,16 +510,16 @@
         "message": "সেটিংস ইম্পোর্ট করুন"
     },
     "improvedtubeButtons": {
-        "message": "ImprovedTube বোতাম"
+        "message": "YouTube Enhanced বোতাম"
     },
     "improvedtubeIconOnYoutube": {
-        "message": "YouTube-এ ImprovedTube আইকন"
+        "message": "YouTube-এ YouTube Enhanced আইকন"
     },
     "improvedtubeLanguage": {
-        "message": "ImprovedTube ভাষা"
+        "message": "YouTube Enhanced ভাষা"
     },
     "improvedtubeVersion": {
-        "message": "ImprovedTube সংস্করণ"
+        "message": "YouTube Enhanced সংস্করণ"
     },
     "improveLogo": {
         "message": "YouTube লোগো উন্নত করুন"

@@ -801,22 +801,22 @@
     "message": "นำเข้าการตั้งค่า"
   },
   "ImprovedTube": {
-    "message": "ImprovedTube"
+    "message": "YouTube Enhanced"
   },
   "improvedtubeButtons": {
-    "message": "ปุ่ม ImprovedTube"
+    "message": "ปุ่ม YouTube Enhanced"
   },
   "improvedtubeIconOnYoutube": {
-    "message": "ไอคอน ImprovedTube บน YouTube"
+    "message": "ไอคอน YouTube Enhanced บน YouTube"
   },
   "improvedtubeLanguage": {
-    "message": "ภาษาของ ImprovedTube"
+    "message": "ภาษาของ YouTube Enhanced"
   },
   "improvedTubeSidePanel": {
-    "message": "ImprovedTube: แถบข้างเบราว์เซอร์"
+    "message": "YouTube Enhanced: แถบข้างเบราว์เซอร์"
   },
   "improvedtubeVersion": {
-    "message": "เวอร์ชัน ImprovedTube"
+    "message": "เวอร์ชัน YouTube Enhanced"
   },
   "improveLogo": {
     "message": "โลโก้: ขาวดำ!"
@@ -1248,7 +1248,7 @@
     "message": "รายงาน"
   },
   "requirePassword": {
-    "message": "ต้องใช้รหัสผ่านเพื่อเปลี่ยนการตั้งค่า ImprovedTube"
+    "message": "ต้องใช้รหัสผ่านเพื่อเปลี่ยนการตั้งค่า YouTube Enhanced"
   },
   "reset": {
     "message": "รีเซ็ต"

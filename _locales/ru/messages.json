@@ -6,7 +6,7 @@
     "message": "Скрыть 'Полку с товарами'"
   },
   "about": {
-    "message": "Об ImprovedTube"
+    "message": "Об YouTube Enhanced"
   },
   "accept": {
     "message": "Принять"
@@ -810,22 +810,22 @@
     "message": "Импорт настроек"
   },
   "ImprovedTube": {
-    "message": "ImprovedTube"
+    "message": "YouTube Enhanced"
   },
   "improvedtubeButtons": {
-    "message": "Кнопки ImprovedTube"
+    "message": "Кнопки YouTube Enhanced"
   },
   "improvedtubeIconOnYoutube": {
-    "message": "Значок ImprovedTube в YouTube"
+    "message": "Значок YouTube Enhanced в YouTube"
   },
   "improvedtubeLanguage": {
-    "message": "Язык ImprovedTube"
+    "message": "Язык YouTube Enhanced"
   },
   "improvedTubeSidePanel": {
-    "message": "ImprovedTube: боковая панель браузера"
+    "message": "YouTube Enhanced: боковая панель браузера"
   },
   "improvedtubeVersion": {
-    "message": "Версия ImprovedTube"
+    "message": "Версия YouTube Enhanced"
   },
   "improveLogo": {
     "message": "Изменить логотип YouTube"
@@ -1263,7 +1263,7 @@
     "message": "Пожаловаться"
   },
   "requirePassword": {
-    "message": "Требовать пароль для изменения настроек ImprovedTube"
+    "message": "Требовать пароль для изменения настроек YouTube Enhanced"
   },
   "reset": {
     "message": "Сбросить"

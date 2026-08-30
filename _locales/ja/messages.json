@@ -24,7 +24,7 @@
     "message": "AI要約を非表示"
   },
   "requirePassword": {
-    "message": "ImprovedTubeの設定を変更する際にパスワードを要求"
+    "message": "YouTube Enhancedの設定を変更する際にパスワードを要求"
   },
   "passwordOptions": {
     "message": "パスワードオプション"
@@ -51,7 +51,7 @@
     "message": "参加"
   },
   "improvedTubeSidePanel": {
-    "message": "ImprovedTube: ブラウザサイドパネル"
+    "message": "YouTube Enhanced: ブラウザサイドパネル"
   },
   "cursorLighting": {
     "message": "ホバーした要素以外の画面全体を暗く表示"
@@ -804,19 +804,19 @@
     "message": "設定のインポート"
   },
   "ImprovedTube": {
-    "message": "ImprovedTube"
+    "message": "YouTube Enhanced"
   },
   "improvedtubeButtons": {
-    "message": "ImprovedTubeボタン"
+    "message": "YouTube Enhancedボタン"
   },
   "improvedtubeIconOnYoutube": {
-    "message": "YouTube上のImprovedTubeアイコン"
+    "message": "YouTube上のYouTube Enhancedアイコン"
   },
   "improvedtubeLanguage": {
-    "message": "ImprovedTube"
+    "message": "YouTube Enhanced"
   },
   "improvedtubeVersion": {
-    "message": "ImprovedTubeバージョン"
+    "message": "YouTube Enhancedバージョン"
   },
   "improveLogo": {
     "message": "ロゴ：モノクロ版"

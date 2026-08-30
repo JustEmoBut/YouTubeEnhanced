@@ -741,22 +741,22 @@
         "message": "సెట్టింగ్స్‌ను దిగుమతి చేయి"
     },
     "ImprovedTube": {
-        "message": "ImprovedTube"
+        "message": "YouTube Enhanced"
     },
     "improvedtubeButtons": {
-        "message": "ImprovedTube బటన్లు"
+        "message": "YouTube Enhanced బటన్లు"
     },
     "improvedtubeIconOnYoutube": {
-        "message": "యూట్యూబ్‌లో ImprovedTube ఐకాన్"
+        "message": "యూట్యూబ్‌లో YouTube Enhanced ఐకాన్"
     },
     "improvedtubeLanguage": {
-        "message": "ImprovedTube"
+        "message": "YouTube Enhanced"
     },
     "improvedTubeSidePanel": {
-        "message": "ImprovedTube: బ్రౌజర్ సైడ్‌పానెల్"
+        "message": "YouTube Enhanced: బ్రౌజర్ సైడ్‌పానెల్"
     },
     "improvedtubeVersion": {
-        "message": "ImprovedTube వెర్షన్"
+        "message": "YouTube Enhanced వెర్షన్"
     },
     "improveLogo": {
         "message": "లోగో: మోనోక్రోమ్!"
@@ -1143,7 +1143,7 @@
         "message": "రిపోర్ట్"
     },
     "requirePassword": {
-        "message": "ImprovedTube సెట్టింగ్స్ మార్చడానికి పాస్‌వర్డ్ అవసరం"
+        "message": "YouTube Enhanced సెట్టింగ్స్ మార్చడానికి పాస్‌వర్డ్ అవసరం"
     },
     "reset": {
         "message": "రీసెట్"

@@ -823,22 +823,22 @@
     "message": "Import settings"
   },
   "ImprovedTube": {
-    "message": "ImprovedTube"
+    "message": "YouTube Enhanced"
   },
   "improvedtubeButtons": {
-    "message": "ImprovedTube buttons"
+    "message": "YouTube Enhanced buttons"
   },
   "improvedtubeIconOnYoutube": {
-    "message": "ImprovedTube icon on YouTube"
+    "message": "YouTube Enhanced icon on YouTube"
   },
   "improvedtubeLanguage": {
-    "message": "ImprovedTube"
+    "message": "YouTube Enhanced"
   },
   "improvedTubeSidePanel": {
-    "message": "ImprovedTube: Browser Sidepanel"
+    "message": "YouTube Enhanced: Browser Sidepanel"
   },
   "improvedtubeVersion": {
-    "message": "ImprovedTube version"
+    "message": "YouTube Enhanced version"
   },
   "improveLogo": {
     "message": "Logo: Monochrome!"
@@ -1282,7 +1282,7 @@
     "message": "Report"
   },
   "requirePassword": {
-    "message": "Require password to change ImprovedTube settings"
+    "message": "Require password to change YouTube Enhanced settings"
   },
   "reset": {
     "message": "Reset"

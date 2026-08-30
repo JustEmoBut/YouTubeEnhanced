@@ -771,19 +771,19 @@
         "message": "匯入設定" 
     },
     "improvedtubeButtons": {
-        "message": "ImprovedTube 按鈕" 
+        "message": "YouTube Enhanced 按鈕" 
     },
     "improvedtubeIconOnYoutube": {
-        "message": "於 YouTube 上顯示 ImprovedTube 圖示" 
+        "message": "於 YouTube 上顯示 YouTube Enhanced 圖示" 
     },
     "improvedtubeLanguage": {
-        "message": "ImprovedTube 語言" 
+        "message": "YouTube Enhanced 語言" 
     },
     "improvedTubeSidePanel": {
-        "message": "ImprovedTube 瀏覽器側邊欄" 
+        "message": "YouTube Enhanced 瀏覽器側邊欄" 
     },
     "improvedtubeVersion": {
-        "message": "ImprovedTube 版本" 
+        "message": "YouTube Enhanced 版本" 
     },
     "improveLogo": {
         "message": "改進 YouTube 圖示" 
@@ -1038,7 +1038,7 @@
         "message": "暫停時自動隱藏劇院模式" 
     },
     "player_cinema_mode_button": {
-        "message": "劇院模式 (ImprovedTube)" 
+        "message": "劇院模式 (YouTube Enhanced)" 
     },
     "player_dont_speed_education": {
         "message": "不要加速「不常見」類別：教育" 
@@ -1194,7 +1194,7 @@
         "message": "檢舉" 
     },
     "requirePassword": {
-        "message": "需要密碼才能變更 ImprovedTube 設定" 
+        "message": "需要密碼才能變更 YouTube Enhanced 設定" 
     },
     "reset": {
         "message": "重設" 
@@ -1257,7 +1257,7 @@
         "message": "上一章節" 
     },
     "settings": {
-        "message": "ImprovedTube 設定" 
+        "message": "YouTube Enhanced 設定" 
     },
     "settingsSuccessfullyImported": {
         "message": "設定匯入成功" 

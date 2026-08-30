@@ -807,22 +807,22 @@
         "message": "Importar configurações"
     },
     "ImprovedTube": {
-        "message": "ImprovedTube"
+        "message": "YouTube Enhanced"
     },
     "improvedtubeButtons": {
-        "message": "Botões do ImprovedTube"
+        "message": "Botões do YouTube Enhanced"
     },
     "improvedtubeIconOnYoutube": {
-        "message": "Ícone do ImprovedTube"
+        "message": "Ícone do YouTube Enhanced"
     },
     "improvedtubeLanguage": {
-        "message": "Idioma do ImprovedTube"
+        "message": "Idioma do YouTube Enhanced"
     },
     "improvedTubeSidePanel": {
-        "message": "ImprovedTube: Painel lateral do navegador"
+        "message": "YouTube Enhanced: Painel lateral do navegador"
     },
     "improvedtubeVersion": {
-        "message": "Versão do ImprovedTube"
+        "message": "Versão do YouTube Enhanced"
     },
     "improveLogo": {
         "message": "Logo do ImproveTube"
@@ -1254,7 +1254,7 @@
         "message": "Reportar"
     },
     "requirePassword": {
-        "message": "É necessária a senha para alterar as configurações do ImprovedTube"
+        "message": "É necessária a senha para alterar as configurações do YouTube Enhanced"
     },
     "reset": {
         "message": "Resetar"

@@ -762,22 +762,22 @@
         "message": "وارد کردن تنظیمات"
     },
     "ImprovedTube": {
-        "message": "ImprovedTube"
+        "message": "YouTube Enhanced"
     },
     "improvedtubeButtons": {
-        "message": "دکمه‌های ImprovedTube"
+        "message": "دکمه‌های YouTube Enhanced"
     },
     "improvedtubeIconOnYoutube": {
-        "message": "آیکون ImprovedTube در یوتیوب"
+        "message": "آیکون YouTube Enhanced در یوتیوب"
     },
     "improvedtubeLanguage": {
-        "message": "ImprovedTube"
+        "message": "YouTube Enhanced"
     },
     "improvedTubeSidePanel": {
-        "message": "ImprovedTube: پنل کناری مرورگر"
+        "message": "YouTube Enhanced: پنل کناری مرورگر"
     },
     "improvedtubeVersion": {
-        "message": "نسخه ImprovedTube"
+        "message": "نسخه YouTube Enhanced"
     },
     "improveLogo": {
         "message": "! لوگو: تک‌رنگ"
@@ -1182,7 +1182,7 @@
         "message": "گزارش"
     },
     "requirePassword": {
-        "message": "برای تغییر تنظیمات ImprovedTube نیاز به رمز عبور است"
+        "message": "برای تغییر تنظیمات YouTube Enhanced نیاز به رمز عبور است"
     },
     "reset": {
         "message": "بازنشانی"

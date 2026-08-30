@@ -395,6 +395,3 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 
 // Initial context menu setup
 updateContextMenu();
-
-/*-----# UNINSTALL URL-----------------------------------*/
-chrome.runtime.setUninstallURL('https://improvedtube.com/uninstalled');

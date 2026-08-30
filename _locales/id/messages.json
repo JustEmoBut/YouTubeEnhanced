@@ -738,22 +738,22 @@
     "message": "Impor pengaturan"
   },
   "ImprovedTube": {
-    "message": "ImprovedTube"
+    "message": "YouTube Enhanced"
   },
   "improvedtubeButtons": {
-    "message": "Tombol ImprovedTube"
+    "message": "Tombol YouTube Enhanced"
   },
   "improvedtubeIconOnYoutube": {
-    "message": "Ikon ImprovedTube di YouTube"
+    "message": "Ikon YouTube Enhanced di YouTube"
   },
   "improvedtubeLanguage": {
-    "message": "Bahasa ImprovedTube"
+    "message": "Bahasa YouTube Enhanced"
   },
   "improvedTubeSidePanel": {
-    "message": "ImprovedTube Panel Samping"
+    "message": "YouTube Enhanced Panel Samping"
   },
   "improvedtubeVersion": {
-    "message": "Versi ImprovedTube"
+    "message": "Versi YouTube Enhanced"
   },
   "improveLogo": {
     "message": "improveLogo"
@@ -1137,7 +1137,7 @@
     "message": "Laporan"
   },
   "requirePassword": {
-    "message": "Memerlukan kata sandi untuk mengubah pengaturan ImprovedTube"
+    "message": "Memerlukan kata sandi untuk mengubah pengaturan YouTube Enhanced"
   },
   "reset": {
     "message": "Atur ulang"

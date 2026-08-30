@@ -54,7 +54,7 @@
       "message": "탭만 숨기기"
    },
    "ImprovedTube": {
-      "message": "ImprovedTube"
+      "message": "YouTube Enhanced"
    },
    "Left_Side_Menu": {
       "message": "왼쪽 사이드 메뉴"
@@ -825,19 +825,19 @@
       "message": "로고: 흑백!"
    },
    "improvedTubeSidePanel": {
-      "message": "ImprovedTube: 브라우저 사이드 패널"
+      "message": "YouTube Enhanced: 브라우저 사이드 패널"
    },
    "improvedtubeButtons": {
-      "message": "ImprovedTube 버튼"
+      "message": "YouTube Enhanced 버튼"
    },
    "improvedtubeIconOnYoutube": {
-      "message": "YouTube의 ImprovedTube 아이콘"
+      "message": "YouTube의 YouTube Enhanced 아이콘"
    },
    "improvedtubeLanguage": {
-      "message": "ImprovedTube"
+      "message": "YouTube Enhanced"
    },
    "improvedtubeVersion": {
-      "message": "ImprovedTube 버전"
+      "message": "YouTube Enhanced 버전"
    },
    "increasePlaybackSpeed": {
       "message": "재생 속도 증가"
@@ -1230,7 +1230,7 @@
       "message": "신고"
    },
    "requirePassword": {
-      "message": "ImprovedTube 설정을 변경할 때 비밀번호 필요"
+      "message": "YouTube Enhanced 설정을 변경할 때 비밀번호 필요"
    },
    "reset": {
       "message": "초기화"

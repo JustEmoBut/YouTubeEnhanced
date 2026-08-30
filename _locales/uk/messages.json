@@ -756,22 +756,22 @@
     "message": "Імпортувати налаштування"
   },
   "ImprovedTube": {
-    "message": "ImprovedTube"
+    "message": "YouTube Enhanced"
   },
   "improvedtubeButtons": {
-    "message": "Кнопки ImprovedTube"
+    "message": "Кнопки YouTube Enhanced"
   },
   "improvedtubeIconOnYoutube": {
-    "message": "Значок ImprovedTube на YouTube"
+    "message": "Значок YouTube Enhanced на YouTube"
   },
   "improvedtubeLanguage": {
-    "message": "ImprovedTube"
+    "message": "YouTube Enhanced"
   },
   "improvedTubeSidePanel": {
-    "message": "ImprovedTube: Бічна панель браузера"
+    "message": "YouTube Enhanced: Бічна панель браузера"
   },
   "improvedtubeVersion": {
-    "message": "Версія ImprovedTube"
+    "message": "Версія YouTube Enhanced"
   },
   "improveLogo": {
     "message": "Логотип: Монохромний!"
@@ -1176,7 +1176,7 @@
     "message": "Поскаржитися"
   },
   "requirePassword": {
-    "message": "Вимагати пароль для зміни налаштувань ImprovedTube"
+    "message": "Вимагати пароль для зміни налаштувань YouTube Enhanced"
   },
   "reset": {
     "message": "Скинути"

@@ -26,7 +26,7 @@ import re
 # Helpers
 #---------------------------------------------------------------
 
-FIREFOX_EXTENSION_ID = '{3c6bf0cc-3ae2-42fb-9993-0d33104fdcaf}'
+FIREFOX_EXTENSION_ID = '{df421c45-ebff-4248-888d-cd505ecade11}'
 
 EXCLUDE_TOP_LEVEL = {
 	'.editorconfig',
