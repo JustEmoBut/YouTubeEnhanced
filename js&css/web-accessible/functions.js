@@ -185,9 +185,6 @@ ImprovedTube.ytElementsHandler = function (node) {
 								}
 							}
 						}
-						if (mutation.type === 'attributes' && mutation.attributeName === 'id' && mutation.target.querySelector('*[id^="ad-text"], *[id^="skip-button"], .ytp-ad-skip-button-modern.ytp-button',)) {
-							ImprovedTube.playerAds(addedNode);
-						}
 					}
 				}).observe(node, {
 					childList: true, // attributes: true,
