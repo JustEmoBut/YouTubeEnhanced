@@ -461,7 +461,7 @@ extension.skeleton.header.sectionEnd.menu.on.click.settings.on.click.secondSecti
 										click: function () {
 											chrome.tabs.query({}, function (tabs) {
 												for (var i = 0, l = tabs.length; i < l; i++) {
-													if (tabs[i].hasOwnProperty('url')) {
+													if (Object.prototype.hasOwnProperty.call(tabs[i], 'url')) {
 														chrome.tabs.sendMessage(tabs[i].id, {
 															action: 'delete-youtube-cookies'
 														});

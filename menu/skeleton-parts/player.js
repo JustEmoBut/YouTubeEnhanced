@@ -1522,7 +1522,6 @@ extension.skeleton.main.layers.section.player.on.click = {
 			custom: true,
 			on: {
 				click: function () {
-					let skeleton = this.parentNode.skeleton;
 					// refresh player_codecs/optimize_codec_for_hardware_acceleration elements when we change codecs
 					let refresh = function () {
 						document.getElementById('player_quality').dispatchEvent(new CustomEvent('render'));
@@ -1585,9 +1584,11 @@ extension.skeleton.main.layers.section.player.on.click = {
 						// put some code here looking up GPU  capabilities and comparing to currrent codec selection
 						var codecs = (satus.storage.get('block_h264') ? '' : 'h.264 ') + (satus.storage.get('block_vp9') ? '' : 'vp9 ') + (satus.storage.get('block_av1') ? '' : 'av1');
 
+						// eslint-disable-next-line no-constant-condition -- upstream placeholder: GPU capability lookup not implemented yet
 						if (1) { // todo
 							this.style = '';
 							this.textContent = satus.locale.get('Feature_not_yet_available');
+						// eslint-disable-next-line no-constant-condition -- upstream placeholder, see above
 						} else if (2) { // todo
 							this.style = '';
 							this.textContent = satus.locale.get('GPUnotindatabase');

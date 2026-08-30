@@ -92,7 +92,7 @@ extension.skeleton.main.layers.section.analyzer = {
 							}
 						}
 
-						for (var i = 0, k = Object.keys(channel_counter), l = k.length; i < l; i++) {
+						for (let i = 0, k = Object.keys(channel_counter), l = k.length; i < l; i++) {
 							var channel = channel_counter[k[i]];
 
 							channel.color = satus.color.hslToRgb([360 / l * i, 100, 40]);
@@ -148,7 +148,7 @@ extension.skeleton.main.layers.section.analyzer = {
 							}
 						}
 
-						for (var key in object) {
+						for (let key in object) {
 							var hours = 0,
 								minutes = 0,
 								seconds = object[key];

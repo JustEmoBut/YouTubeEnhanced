@@ -41,7 +41,7 @@ extension.skeleton.header.sectionEnd.search.on.click = {
 				this.remove();
 			}
 		},
-		input: function (event) {
+		input: function () {
 			let self = this,
 				value = this.value.trim();
 

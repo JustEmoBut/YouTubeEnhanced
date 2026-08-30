@@ -127,7 +127,7 @@ ImprovedTube.playerPlaybackSpeed = function () {
 					if (DATA.keywords && !keywords) { keywords = DATA.keywords.join(', ') || ''; }
 					if (keywords === 'video, sharing, camera phone, video phone, free, upload') { keywords = ''; }
 					var musicIdentifiers = /(official|music|lyrics?)[ -]video|(cover|studio|radio|album|alternate)[- ]version|soundtrack|unplugged|\bmedley\b|\blo-fi\b|\blofi\b|a(lla)? cappella|feat\.|(piano|guitar|jazz|ukulele|violin|reggae)[- ](version|cover)|karaok|backing[- ]track|instrumental|(sing|play)[- ]?along|卡拉OK|卡拉OK|الكاريوكي|караоке|カラオケ|노래방|bootleg|mashup|Radio edit|Guest (vocals|musician)|(title|opening|closing|bonus|hidden)[ -]track|live acoustic|interlude|featuring|recorded (at|live)/i;
-					var musicIdentifiersTitleOnly = /lyrics|theme song|\bremix|\bAMV ?[^a-z0-9]|[^a-z0-9] ?AMV\b|\bfull song\b|\bsong:|\bsong[\!$]|^song\b|( - .*\bSong\b|\bSong\b.* - )|cover ?[^a-z0-9]|[^a-z0-9] ?cover|\bconcert\b/i;
+					var musicIdentifiersTitleOnly = /lyrics|theme song|\bremix|\bAMV ?[^a-z0-9]|[^a-z0-9] ?AMV\b|\bfull song\b|\bsong:|\bsong[!$]|^song\b|( - .*\bSong\b|\bSong\b.* - )|cover ?[^a-z0-9]|[^a-z0-9] ?cover|\bconcert\b/i;
 					var musicIdentifiersTitle = new RegExp(musicIdentifiersTitleOnly.source + '|' + musicIdentifiers.source, "i");
 					var musicRegexMatch = musicIdentifiersTitle.test(DATA.title);
 					if (!musicRegexMatch) {
@@ -142,7 +142,7 @@ ImprovedTube.playerPlaybackSpeed = function () {
 					// (Tags/keywords shouldnt lie & very few songs titles might have these words)
 					if (DATA.duration) {
 						function parseDuration (duration) {
-							const [_, h = 0, m = 0, s = 0] = duration.match(/PT(?:(\d+)?H)?(?:(\d+)?M)?(\d+)?S?/).map(part => parseInt(part) || 0);
+							const [, h = 0, m = 0, s = 0] = duration.match(/PT(?:(\d+)?H)?(?:(\d+)?M)?(\d+)?S?/).map(part => parseInt(part) || 0);
 							return h * 3600 + m * 60 + s;
 						}
 						DATA.lengthSeconds = parseDuration(DATA.duration);
@@ -586,20 +586,12 @@ ImprovedTube.playerQualityFullScreen = function () {
 
 	var fsq = ImprovedTube.storage.full_screen_quality;
 	 var playlistQ = ImprovedTube.storage.player_quality_playlist;
-	 var isPlaylist = !!(
-		new URLSearchParams(location.search).has('list') ||
-    document.querySelector('ytd-playlist-panel-renderer') ||
-    document.querySelector('#playlist')
-	);
-	 var target = isFs ? fsq : (isPlaylist && playlistQ && playlistQ !== 'disabled') ? playlistQ : ImprovedTube.storage.player_quality;
-
 	var map = {
 		'144p':'tiny', '240p':'small', '360p':'medium', '480p':'large',
 		'720p':'hd720', '1080p':'hd1080', '1440p':'hd1440', '2160p':'hd2160', '4320p':'highres',
 		'tiny':'tiny', 'small':'small', 'medium':'medium', 'large':'large',
 		'hd720':'hd720', 'hd1080':'hd1080', 'hd1440':'hd1440', 'hd2160':'hd2160', 'highres':'highres'
 	};
-	var desired = map[target] || target;
 
 	function applyQuality () {
 		var isPlaylist = !!(
@@ -1084,7 +1076,7 @@ ImprovedTube.playerVolumeBoostButton = function () {
 
 		svg.appendChild(path);
 
-		var button = this.createPlayerButton({
+		this.createPlayerButton({
 			id: 'it-volume-boost-button',
 			child: svg,
 			opacity: 0.5,
@@ -3031,21 +3023,25 @@ ImprovedTube.jumpToKeyScene = function () {
 		console.log(`Jumped to Most Replayed @ ${Math.floor(targetSeconds / 60)}:${Math.floor(targetSeconds % 60).toString().padStart(2, "0")}`);
 
 		function extractYtInitialData () {
-			if (DATA.ytInitialData) { return DATA.ytInitialData; }
+			// Both sources hold a regex match, not parsed JSON: DATA.ytInitialData
+			// is assigned from the same pattern when the watch page is refetched.
+			function parse (match) {
+				try {
+					return JSON.parse(match[1]);
+				} catch (e) {
+					console.warn("Failed to parse ytInitialData JSON", e);
+					return null;
+				}
+			}
+
+			if (DATA.ytInitialData) { return parse(DATA.ytInitialData); }
 
 			const scriptTags = document.querySelectorAll('script');
 
 			for (let i = 0; i < scriptTags.length; i++) {
 				const match = scriptTags[i].textContent.match(/var ytInitialData = ({.*?});/s);
 
-				if (match) {
-					try {
-						return JSON.parse(match[1]);
-					} catch (e) {
-						console.warn("Failed to parse ytInitialData JSON", e);
-						return null;
-					}
-				}
+				if (match) { return parse(match); }
 			}
 
 			return null;
@@ -3086,7 +3082,6 @@ ImprovedTube.jumpToKeyScene = function () {
 							DATA.ytInitialData = htmlContent.match(/var ytInitialData = ({.*?});/s);
 							if (DATA.ytInitialData) { ImprovedTube.mostReplayed(); }
 						} catch (error) {
-							const o = Object.assign(document.createElement('div'), { innerText: 'too few views' });
 							const keySceneButton = document.querySelector('button[data-tooltip="Key Scene"]');
 							if (keySceneButton) {
 								keySceneButton.style.transition = 'opacity 0.4s'; keySceneButton.style.opacity = '0.3';

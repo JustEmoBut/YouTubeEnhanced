@@ -206,7 +206,7 @@ ImprovedTube.playlistReverse = function () {
 				|| document.body;
 
 			if (targetNode) {
-				ImprovedTube.playlistReverseObserver = new MutationObserver(function (mutations) {
+				ImprovedTube.playlistReverseObserver = new MutationObserver(function () {
 					if (!document.querySelector('#it-reverse-playlist')) {
 						ImprovedTube.injectReverseButton();
 					}

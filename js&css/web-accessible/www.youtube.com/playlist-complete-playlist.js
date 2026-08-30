@@ -308,46 +308,6 @@ async function removeVideosPersistentlyEdit (playlistId, setVideoIds) {
 	}
 }
 
-/**
- * Save watch history to local storage
- */
-function saveLocalWatchHistory () {
-	try {
-		const key = 'it_watch_history';
-		const data = ImprovedTube.storage.watch_history || {};
-		if (typeof chrome !== 'undefined' && chrome.storage?.local?.set) {
-			chrome.storage.local.set({ [key]: data });
-		} else {
-			localStorage.setItem(key, JSON.stringify(data));
-		}
-	} catch (e) { }
-}
-
-/**
- * Reset watch progress for a specific video
- * @param {string} videoId - Video ID to reset
- * @param {Element} renderer - Video renderer element (optional)
- */
-function resetWatchForVideo (videoId, renderer) {
-	// Remove local overlay info and UI traces
-	if (ImprovedTube.storage.watch_history && ImprovedTube.storage.watch_history[videoId]) {
-		delete ImprovedTube.storage.watch_history[videoId];
-		saveLocalWatchHistory();
-	}
-	try {
-		// Remove progress and watched overlays on the item
-		const target = renderer || document.querySelector(`ytd-playlist-video-renderer a[href*="v=${videoId}"]`)?.closest('ytd-playlist-video-renderer');
-		if (target) {
-			target.querySelector('ytd-thumbnail-overlay-resume-playback-renderer')?.remove();
-			target.querySelector('ytd-thumbnail-overlay-watched-status-renderer')?.remove();
-		}
-	} catch (e) { }
-	// Inform extension watched store (best-effort)
-	try {
-		ImprovedTube.messages.send({ action: 'watched', type: 'remove', id: videoId });
-	} catch (e) { }
-}
-
 /*------------------------------------------------------------------------------
 4.5.7.1 QUICK DELETE BUTTONS
 ------------------------------------------------------------------------------*/

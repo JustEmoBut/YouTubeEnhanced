@@ -28,7 +28,7 @@ extension.features.youtubeHomePage = function (anything) {
 
 			while (target.parentNode) {
 				if (target.nodeName === 'A' && target.id === 'logo') {
-					var option = extension.storage.get('youtube_home_page');
+					let option = extension.storage.get('youtube_home_page');
 
 					if (option !== 'search') {
 						event.preventDefault();
@@ -45,7 +45,7 @@ extension.features.youtubeHomePage = function (anything) {
 		}
 	} else if (anything === 'init') {
 		extension.events.on('init', function (resolve) {
-			if (/(www|m)\.youtube\.com\/?(\?|\#|$)/.test(location.href)) {
+			if (/(www|m)\.youtube\.com\/?(\?|#|$)/.test(location.href)) {
 				chrome.storage.local.get('youtube_home_page', function (items) {
 					var option = items.youtube_home_page;
 
@@ -70,7 +70,7 @@ extension.features.youtubeHomePage = function (anything) {
 			prepend: true
 		});
 	} else {
-		var option = extension.storage.get('youtube_home_page');
+		let option = extension.storage.get('youtube_home_page');
 
 		window.removeEventListener('click', this.youtubeHomePage);
 
@@ -590,7 +590,7 @@ extension.features.font = function (changed) {
 	var option = extension.storage.get('font');
 
 	if (option && option !== 'Default') {
-		var link = this.font.link || document.createElement('link'),
+		let link = this.font.link || document.createElement('link'),
 			style = this.font.style || document.createElement('style');
 
 		link.rel = 'stylesheet';
@@ -604,7 +604,7 @@ extension.features.font = function (changed) {
 		this.font.link = link;
 		this.font.style = style;
 	} else if (changed) {
-		var link = this.font.link,
+		let link = this.font.link,
 			style = this.font.style;
 
 		if (link) {
@@ -703,7 +703,7 @@ extension.features.markWatchedVideos = function (anything) {
 		var buttons = document.querySelectorAll('.it-mark-watched-videos');
 
 		for (var i = 0, l = buttons.length; i < l; i++) {
-			var button = buttons[i];
+			let button = buttons[i];
 
 			button.remove();
 		}
@@ -975,7 +975,7 @@ extension.features.openNewTab = function () {
 			const searchButton = document.querySelector("button#search-icon-legacy");
 			const inputField = document.querySelector("input#search");
 
-			searchButton.addEventListener("mousedown", (event) => {
+			searchButton.addEventListener("mousedown", () => {
 				performSearchNewTab(inputField.value);
 			});
 			inputField.addEventListener("keydown", function (event) {

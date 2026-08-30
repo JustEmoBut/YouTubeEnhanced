@@ -291,25 +291,6 @@ ImprovedTube.lastWatchedOverlay = function () {
 			}, 800);
 		});
 
-		function debounce (func, wait) {
-			let timeout;
-			return function executedFunction (...args) {
-				const later = () => {
-					clearTimeout(timeout);
-					func(...args);
-				};
-				clearTimeout(timeout);
-				timeout = setTimeout(later, wait);
-			};
-		}
-
-		// Verwendung in processPage:
-		const debouncedProcessPage = debounce(() => {
-			if (ImprovedTube.lastWatchedOverlayProcess) {
-				ImprovedTube.lastWatchedOverlayProcess();
-			}
-		}, 300);
-
 		return true; // Erfolgreiche Initialisierung
 	}
 };

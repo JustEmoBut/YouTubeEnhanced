@@ -541,7 +541,7 @@ ImprovedTube.improvedtubeYoutubeButtonsUnderPlayer = function () {
    */
 		if (section) {
 			if (this.storage.below_player_loop !== false && !document.querySelector('#it-below-player-loop')) {
-				var button = document.createElement('button'),
+				let button = document.createElement('button'),
 					svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
 					path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 		                var transparentOrOn = .5; if (this.storage.player_always_repeat === true ) { transparentOrOn = 1; }
@@ -576,7 +576,7 @@ ImprovedTube.improvedtubeYoutubeButtonsUnderPlayer = function () {
 				section.insertAdjacentElement('afterend', button)
 			}
 			if (this.storage.below_player_pip === true && !document.querySelector('#it-below-player-pip')) {
-				var button = document.createElement('button'),
+				let button = document.createElement('button'),
 					svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
 					path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 
@@ -596,7 +596,7 @@ ImprovedTube.improvedtubeYoutubeButtonsUnderPlayer = function () {
 			}
 
 			if (this.storage.below_player_screenshot !== false && !document.querySelector('#it-below-player-screenshot')) {
-				var button = document.createElement('button'),
+				let button = document.createElement('button'),
 					svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
 					path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 
@@ -614,7 +614,7 @@ ImprovedTube.improvedtubeYoutubeButtonsUnderPlayer = function () {
 			}
 
 			if (this.storage.below_player_keyscene !== false && !document.querySelector('#it-below-player-keyscene')) {
-				var button = document.createElement('button'),
+				let button = document.createElement('button'),
 					svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
 					g = document.createElementNS('http://www.w3.org/2000/svg', 'g'),
 					path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -642,7 +642,7 @@ ImprovedTube.improvedtubeYoutubeButtonsUnderPlayer = function () {
 			let copyVideoUrlButton = this.storage.copy_video_url === true;
 
 			if (this.storage.copy_video_id === true && !document.querySelector('#it-below-player-copy-video-id')) {
-				var button = document.createElement('button'),
+				let button = document.createElement('button'),
 					svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
 					path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 
@@ -673,7 +673,7 @@ ImprovedTube.improvedtubeYoutubeButtonsUnderPlayer = function () {
 			}
 
 			if (this.storage.copy_transcript !== false && !document.querySelector('#it-below-player-copy-transcript')) {
-				var button = document.createElement('button'),
+				let button = document.createElement('button'),
 					svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
 					path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 
@@ -710,7 +710,7 @@ ImprovedTube.expandDescription = function (el) {
 			ImprovedTube.forbidFocus(2100); // setTimeout(function () {ImprovedTube.elements.player.focus();}, 2500);
 			el.click();
 		} else { // wait for the description
-			var tries = 0; 	var intervalMs = 210; if (location.href.indexOf('/watch?') !== -1) {var maxTries = 10;} else {var maxTries = 0;} // ...except when it is an embedded player?
+			var tries = 0; 	var intervalMs = 210; var maxTries = location.href.indexOf('/watch?') !== -1 ? 10 : 0; // ...except when it is an embedded player?
 			var waitForDescription = setInterval(() => {
 				if (++tries >= maxTries) {
 					if (el) {

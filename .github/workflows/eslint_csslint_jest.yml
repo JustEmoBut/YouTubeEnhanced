@@ -28,7 +28,6 @@ jobs:
       
       - name: Run eslint
         run: npm run lint
-        continue-on-error: true
 
       # - name: Run JSLint
       #   run: npx jslint "**/*.js"
