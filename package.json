@@ -6,11 +6,11 @@
   "scripts": {
     "test": "jest tests",
     "start": "echo 'This is a browser extension. Please see walkthrough.md for loading instructions.'",
-    "lint": "eslint --ignore-path tests/.gitignore"
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "SEE LICENSE IN LICENSE",
   "devDependencies": {
     "@eslint/eslintrc": "latest",
     "@eslint/js": "latest",
