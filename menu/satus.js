@@ -748,6 +748,14 @@ satus.render = function (skeleton, container, property, childrenOnly, prepend, s
 		this.properties(element, skeleton.properties);
 		this.on(element, skeleton.on);
 
+		// The native title attribute is deliberate: an OS tooltip is not clipped
+		// by the edges of the extension popup, a CSS one would be.
+		var description = this.locale.description(skeleton);
+
+		if (description) {
+			element.title = description;
+		}
+
 		// dont add storage component to storage: false elements
 		if (skeleton.storage != false) {
 			element.storage = (function () {
@@ -1034,6 +1042,21 @@ satus.locale.get = function (string) {
 	}
 
 	return string;
+};
+
+/*--------------------------------------------------------------
+# DESCRIPTION
+--------------------------------------------------------------*/
+
+// Hover text for a skeleton entry. By convention a setting labelled
+// `text: 'foo'` takes its explanation from the locale entry `foo_description`,
+// so adding one needs no skeleton change; `description` names another key
+// instead. Returns '' when the entry has no explanation, which is the norm.
+satus.locale.description = function (skeleton) {
+	var key = skeleton.description
+		|| (satus.isString(skeleton.text) ? skeleton.text + '_description' : null);
+
+	return key && this.data[key] ? this.data[key] : '';
 };
 
 /*--------------------------------------------------------------

@@ -65,3 +65,34 @@ describe('skeleton option lists', () => {
 		}
 	});
 });
+
+describe('satus.locale.description', () => {
+	beforeEach(() => {
+		satus.locale.data = {};
+	});
+
+	test('resolves the "<textKey>_description" convention', () => {
+		satus.locale.data.hideTopLoadingBar_description = 'The red bar at the very top.';
+
+		expect(satus.locale.description({ text: 'hideTopLoadingBar' }))
+			.toBe('The red bar at the very top.');
+	});
+
+	test('returns empty when the setting has no explanation', () => {
+		satus.locale.data.hideTopLoadingBar = 'Hide top loading bar';
+
+		expect(satus.locale.description({ text: 'hideTopLoadingBar' })).toBe('');
+	});
+
+	test('an explicit description key wins over the convention', () => {
+		satus.locale.data.shared_description = 'Shared explanation.';
+		satus.locale.data.foo_description = 'Conventional explanation.';
+
+		expect(satus.locale.description({ text: 'foo', description: 'shared_description' }))
+			.toBe('Shared explanation.');
+	});
+
+	test('ignores a non-string text, such as a render function', () => {
+		expect(satus.locale.description({ text: () => 'foo' })).toBe('');
+	});
+});
