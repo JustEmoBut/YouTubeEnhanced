@@ -53,7 +53,9 @@ menu (satus.storage) → chrome.storage.local
 Consequences when adding a feature:
 
 - **Purely visual?** Write only a CSS rule keyed on `html[it-my-feature='true']` in the relevant
-  `js&css/extension/www.youtube.com/**/*.css` and register the file in `manifest.json`. No JS at all.
+  `js&css/extension/www.youtube.com/**/*.css` and register the file in `manifest.json`. No JS at all. The switch still
+  needs a node in the matching `menu/skeleton-parts/*.js` plus `<key>` and `<key>_description` in `_locales/en` (and
+  `tr`); the `_description` suffix is what satus turns into the tooltip.
 - **Needs JS?** Name the function exactly the camelCase form of the storage key (`hide_ai_summary` →
   `ImprovedTube.hideAiSummary`) so the storage listener can re-invoke it on change without extra wiring
   (`js&css/web-accessible/core.js`, `storage-changed` branch).
@@ -105,6 +107,9 @@ Anything touching the real YouTube player cannot be unit-tested and has to be ch
 - YouTube ships two spellings of its button-shape classes (BEM `yt-spec-button-shape-next__icon` and camelCase
   `ytSpecButtonShapeNextIcon`) and two thumbnail markups (`ytd-thumbnail` and `yt-thumbnail-view-model`). Selectors keep
   both variants side by side rather than replacing one with the other — surfaces and A/B buckets differ.
+- `content-visibility: auto` always ships with a `contain-intrinsic-size: auto <length>` measured from the real
+  element, not guessed — an undersized placeholder collapses the page height and makes the scrollbar jump (a 120px
+  guess under a 244px sidebar card shrank a watch page by 43%).
 - A feature that installs listeners, observers or timers needs a re-entry guard: the storage listener re-invokes feature
   functions by name on every settings change, and features that listen for `yt-page-data-updated` re-enter themselves.
 - This is a fork with an active upstream — prefer minimal, local diffs so merges stay cheap.

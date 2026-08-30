@@ -485,6 +485,12 @@
     "cursorLighting_description": {
         "message": "Tüm sayfayı karartır, yalnızca imlecin üzerinde olduğu yeri aydınlatır."
     },
+    "lazyRender": {
+        "message": "Ekran dışındaki videoları çizme"
+    },
+    "lazyRender_description": {
+        "message": "Akışta, kenar çubuğunda ve yorumlarda ekrandan çıkan öğeler için tarayıcının çizim işlemini atlamasını sağlar. Öğeler sayfada kalır, geri kaydırıldığında anında görünür."
+    },
     "custom": {
         "message": "Özel"
     },

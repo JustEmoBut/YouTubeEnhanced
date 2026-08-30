@@ -47,6 +47,10 @@ extension.skeleton.main.layers.section.general = {
 					component: 'switch',
 					text: 'cursorLighting',
 				},
+				lazy_render: {
+					component: 'switch',
+					text: 'lazyRender',
+				},
 				search: {
 					component: 'section',
 					variant: 'card',

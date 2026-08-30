@@ -530,6 +530,12 @@
     "cursorLighting_description": {
         "message": "Darkens the whole page and lights up only what your cursor is over."
     },
+    "lazyRender": {
+        "message": "Skip rendering videos that are off-screen"
+    },
+    "lazyRender_description": {
+        "message": "Lets the browser skip the work for feed, sidebar and comment items you have scrolled past. They stay on the page and come back instantly when scrolled to."
+    },
     "custom": {
         "message": "Custom"
     },
