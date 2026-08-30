@@ -44,7 +44,7 @@ satus.storage.import(function (items) {
 					rows: 1,
 
 					// Focuses text box when extension is opened
-					function() {
+					function () {
 						document.getElementById('login-input').focus();
 					},
 
@@ -69,8 +69,7 @@ satus.storage.import(function (items) {
 					}
 				}
 			}, extension.skeleton.rendered);
-		}
-		else renderSkeleton(); // Render regular menu if password is not required
+		} else renderSkeleton(); // Render regular menu if password is not required
 	}, '_locales/');
 });
 

@@ -22,7 +22,7 @@ ImprovedTube.playlistUpNextAutoplay = function () {
 // currentIndex and localCurrentIndex to desync at chunk boundaries.
 // This handler keeps them in sync so autoplay continues working.
 // Only runs when playlist_up_next_autoplay is NOT disabled.
-ImprovedTube.playlistLargePlaylistHandler = function() {
+ImprovedTube.playlistLargePlaylistHandler = function () {
 	if (!this.getParam(location.href, 'list')) return;
 
 	// Do not sync indices if the user has disabled playlist autoplay,
@@ -64,7 +64,7 @@ ImprovedTube.playlistLargePlaylistHandler = function() {
 };
 
 // Cleanup function for when navigating away from playlist pages
-ImprovedTube.cleanupPlaylistHandlers = function() {
+ImprovedTube.cleanupPlaylistHandlers = function () {
 	if (this.playlistAutoplayObserver) {
 		this.playlistAutoplayObserver.disconnect();
 		this.playlistAutoplayObserver = null;
@@ -81,7 +81,7 @@ ImprovedTube.cleanupPlaylistHandlers = function() {
 ------------------------------------------------------------------------------*/
 
 // Fix #1836: Independent inject function for button
-ImprovedTube.injectReverseButton = function() {
+ImprovedTube.injectReverseButton = function () {
 	if (document.querySelector('#it-reverse-playlist')) return;
 
 	var container = ImprovedTube.elements.playlist.actions
@@ -206,7 +206,7 @@ ImprovedTube.playlistReverse = function () {
 				|| document.body;
 
 			if (targetNode) {
-				ImprovedTube.playlistReverseObserver = new MutationObserver(function(mutations) {
+				ImprovedTube.playlistReverseObserver = new MutationObserver(function (mutations) {
 					if (!document.querySelector('#it-reverse-playlist')) {
 						ImprovedTube.injectReverseButton();
 					}
@@ -234,8 +234,7 @@ ImprovedTube.playlistRepeat = function () {
 	  && button.firstElementChild?.firstElementChild?.attributes[2]?.textContent !== 'Loop video'
 	  && button.querySelector("#tooltip")?.textContent !== 'Turn off loop'
 	  && button.firstElementChild?.firstElementChild?.attributes[2]?.textContent !== 'Turn off loop'
-			)
-			{ button.click(); }
+			) { button.click(); }
 		}, 10000);
 	}
 };
@@ -252,8 +251,7 @@ ImprovedTube.playlistShuffle = function () {
 				option = ImprovedTube.storage.playlist_shuffle;
 			button = document.querySelector('#playlist-actions #playlist-action-menu ytd-toggle-button-renderer');
 			if (button && (option === true && button.querySelector("path").attributes.d.textContent.split(" ")[0].startsWith('M18.1')
-			) 	)
-			{ button.click(); }
+			) 	) { button.click(); }
 		}, 10000);
 	}
 };
@@ -317,12 +315,12 @@ ImprovedTube.playlistPopupCreateButton = function (playlistID, altButtonStyle, c
 		} : function () {
 			let width = ImprovedTube.elements.player.offsetWidth * 0.7 ?? innerWidth * 0.45;
 			let height = ImprovedTube.elements.player.offsetHeight * 0.7 ?? innerHeight * 0.45;
-				if (!ImprovedTube.elements.player) {
-					shorts = /short/.test(this.parentElement.href);
-					if ( width / height < 1 ) { vertical = true } else { vertical = false }
-					if ( !vertical && shorts ) { width = height * 0.6}
-					if ( vertical && !shorts ) { height = width * 0.6}
-				}
+			if (!ImprovedTube.elements.player) {
+				shorts = /short/.test(this.parentElement.href);
+				if ( width / height < 1 ) { vertical = true } else { vertical = false }
+				if ( !vertical && shorts ) { width = height * 0.6}
+				if ( vertical && !shorts ) { height = width * 0.6}
+			}
 			"use strict";
 			window.open(`${location.protocol}//www.youtube.com/embed/videoseries?autoplay=${ImprovedTube.storage.player_autoplay_disable ? '0' : '1'}&list=${this.dataset.list}`, '_blank', `directories=no,toolbar=no,location=no,menubar=no,status=no,titlebar=no,scrollbars=no,resizable=no,width=${width / 3},height=${height / 3}`);
 			//~ change focused tab to URL-less popup
@@ -356,7 +354,7 @@ ImprovedTube.playlistPopupCreateButton = function (playlistID, altButtonStyle, c
 */
 ImprovedTube.playlistCopyVideoIdButton = function () {
 	if (this.storage.playlist_copy_video_id === true) {
-    const playlistItems = document.querySelectorAll('ytd-playlist-panel-video-renderer');
+		const playlistItems = document.querySelectorAll('ytd-playlist-panel-video-renderer');
 		playlistItems.forEach(item => {
 			if (!item.querySelector('.it-playlist-copy-video-id')) {
 				const button = document.createElement('button');
@@ -380,7 +378,7 @@ ImprovedTube.playlistCopyVideoIdButton = function () {
 						}
 					}
 					button.dataset.tooltip = 'Copied!';
-					setTimeout(function() {
+					setTimeout(function () {
 						button.dataset.tooltip = 'CopyVideoID';
 					}, 500);
 				});

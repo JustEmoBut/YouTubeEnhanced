@@ -10,7 +10,8 @@
 # SIDE PANELS ACCORDION - issue #4020
 --------------------------------------------------------------*/
 
-extension.features.sidePanels = function () {	if (extension.storage.get('side_panels') !== 'collapsed') {		return; 	}
+extension.features.sidePanels = function () {
+	if (extension.storage.get('side_panels') !== 'collapsed') {		return; 	}
 	document.documentElement.setAttribute('it-side-panels', 'collapsed');
 	window.addEventListener('click', extension.features.sidePanels.handleClick, true);
 	window.addEventListener('click', extension.features.sidePanels.handleHeaderClick, true);
@@ -131,7 +132,7 @@ extension.features.relatedVideos = function (anything) {
 
 extension.features.liveChat = function () {
 	if (extension.storage.get('livechat') === 'collapsed') {
-		window.addEventListener('click', function(event) {
+		window.addEventListener('click', function (event) {
 			if (extension.storage.get('livechat') !== 'collapsed') return;
 
 			var chat = event.target.closest('#chat-container');
@@ -157,7 +158,7 @@ extension.features.liveChat = function () {
 extension.features.stickyNavigation = function () {
 	if (extension.storage.get('sticky_navigation') === true) {
 		// Function to ensure navigation stays visible
-		function ensureNavigationVisible() {
+		function ensureNavigationVisible () {
 			const miniGuide = document.querySelector('ytd-mini-guide-renderer');
 			const guide = document.querySelector('ytd-guide-renderer');
 
@@ -180,8 +181,8 @@ extension.features.stickyNavigation = function () {
 		ensureNavigationVisible();
 
 		// Set up observer to watch for navigation changes
-		const observer = new MutationObserver(function(mutations) {
-			mutations.forEach(function(mutation) {
+		const observer = new MutationObserver(function (mutations) {
+			mutations.forEach(function (mutation) {
 				if (mutation.type === 'attributes' &&
 					(mutation.attributeName === 'hidden' || mutation.attributeName === 'aria-hidden')) {
 					ensureNavigationVisible();

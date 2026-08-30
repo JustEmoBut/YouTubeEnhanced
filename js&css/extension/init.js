@@ -26,7 +26,7 @@ extension.events.on('init', function (resolve) {
 	async: true
 });
 
-function bodyReady() {
+function bodyReady () {
 	if (extension.ready && extension.domReady) {
 		extension.features.addScrollToTop();
 		extension.features.font();
@@ -68,7 +68,7 @@ chrome.runtime.sendMessage({
 	}
 });
 
-function finishPageWorldInit() {
+function finishPageWorldInit () {
 	extension.ready = true;
 
 	extension.events.trigger('init');

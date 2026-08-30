@@ -774,7 +774,7 @@ extension.skeleton.header.sectionEnd.menu.on.click.settings.on.click.secondSecti
 # PASSWORD OPTIONS
 --------------------------------------------------------------*/
 
-function togglePasswordInput() {
+function togglePasswordInput () {
 	// Sets the visibility of the password input field depending on the state of the requirement switch
 	let requirePassword = satus.storage.get("require_password");
 	const display = satus.storage.get("require_password") ? "" : "none";
@@ -846,7 +846,7 @@ extension.skeleton.header.sectionEnd.menu.on.click.settings.on.click.secondSecti
 					},
 
 					// Sets password field's visibility when modal menu is rendered
-					function() {
+					function () {
 						togglePasswordInput();
 					},
 

@@ -246,7 +246,7 @@ extension.skeleton.main.layers.section.player.on.click = {
 										render: function () {
 											let container = this;
 
-											function updateView() {
+											function updateView () {
 												container.innerHTML = '';
 												let skeleton = {};
 												let ts = Date.now(); // Unique ID to prevent caching bugs
@@ -296,14 +296,14 @@ extension.skeleton.main.layers.section.player.on.click = {
 															{value: 'Nonprofits & Activism', text: 'Nonprofits & Activism'}
 														],
 														on: {
-															change: function() { tempCategory = this.value; }
+															change: function () { tempCategory = this.value; }
 														}
 													},
 													add_category_btn: {
 														component: 'button',
 														text: '➕ Add Selected Category',
 														on: {
-															click: function() {
+															click: function () {
 																if (tempCategory !== 'none') {
 																	let freshState = Object.assign({}, satus.storage.get('smart_speed_profiles') || {});
 																	let newObj = {};
@@ -321,7 +321,7 @@ extension.skeleton.main.layers.section.player.on.click = {
 														component: 'button',
 														text: '➕ Enter & Add Channel Name',
 														on: {
-															click: function() {
+															click: function () {
 																let name = prompt("Enter Channel Handle (e.g., @MrBeast) or Name:");
 																if (name) {
 																	let freshState = Object.assign({}, satus.storage.get('smart_speed_profiles') || {});
@@ -349,7 +349,7 @@ extension.skeleton.main.layers.section.player.on.click = {
 															text: 'Whitelist (Disable Speedup)',
 															value: profiles[key].whitelist || false,
 															on: {
-																change: function() {
+																change: function () {
 																	let freshState = Object.assign({}, satus.storage.get('smart_speed_profiles'));
 																	freshState[key].whitelist = this.dataset.value === 'true';
 																	satus.storage.set('smart_speed_profiles', freshState);
@@ -359,7 +359,7 @@ extension.skeleton.main.layers.section.player.on.click = {
 														max_slider: {
 															component: 'slider', text: 'Max Speed', value: profiles[key].max, min: 1.0, max: 4.0, step: 0.1,
 															on: {
-																change: function() {
+																change: function () {
 																	let freshState = Object.assign({}, satus.storage.get('smart_speed_profiles'));
 																	freshState[key].max = Number(this.value);
 																	satus.storage.set('smart_speed_profiles', freshState);
@@ -369,7 +369,7 @@ extension.skeleton.main.layers.section.player.on.click = {
 														min_slider: {
 															component: 'slider', text: 'Min Speed', value: profiles[key].min, min: 0.5, max: 2.0, step: 0.1,
 															on: {
-																change: function() {
+																change: function () {
 																	let freshState = Object.assign({}, satus.storage.get('smart_speed_profiles'));
 																	freshState[key].min = Number(this.value);
 																	satus.storage.set('smart_speed_profiles', freshState);
@@ -379,7 +379,7 @@ extension.skeleton.main.layers.section.player.on.click = {
 														sens_slider: {
 															component: 'slider', text: 'Sensitivity', value: profiles[key].sens || 0.5, min: 0.01, max: 1.0, step: 0.01,
 															on: {
-																change: function() {
+																change: function () {
 																	let freshState = Object.assign({}, satus.storage.get('smart_speed_profiles'));
 																	freshState[key].sens = Number(this.value);
 																	satus.storage.set('smart_speed_profiles', freshState);
@@ -389,7 +389,7 @@ extension.skeleton.main.layers.section.player.on.click = {
 														delete_btn: {
 															component: 'button', text: '🗑️ Delete Profile',
 															on: {
-																click: function() {
+																click: function () {
 																	let freshState = Object.assign({}, satus.storage.get('smart_speed_profiles'));
 																	delete freshState[key];
 																	satus.storage.set('smart_speed_profiles', freshState);
@@ -980,14 +980,14 @@ extension.skeleton.main.layers.section.player.on.click = {
 			text: 'disableAutoDubbing'
 		},
 		hide_auto_dubbed_options: {
-    component: 'switch',
-    text: 'hideAutoDubbedOptions'
+			component: 'switch',
+			text: 'hideAutoDubbedOptions'
 		},
 		preferred_dubbing_language: {
 			component: 'input',
 			text: 'preferredDubbingLanguage',
 			placeholder: 'e.g. en, fr, de, ja'
-    },
+		},
 		player_default_dubbed_language: {
 			component: 'select',
 			text: 'defaultDubbedLanguage',
@@ -1348,17 +1348,17 @@ extension.skeleton.main.layers.section.player.on.click = {
 			}
 		},
 		player_quality_playlist: {
-      component: 'select',
-      text: 'playlistQuality',
-      id: 'player_quality_playlist',
-      options: function () {
+			component: 'select',
+			text: 'playlistQuality',
+			id: 'player_quality_playlist',
+			options: function () {
       	return extension.skeleton.main.layers.section.player.on.click.section_1.player_quality.options;
-      },
-      on: {
-        render: function () {
+			},
+			on: {
+				render: function () {
 					extension.skeleton.main.layers.section.player.on.click.section_1.player_quality.on.render.call(this)
-        }
-      }
+				}
+			}
 		},
 		/*
 	qualityWhenRunningOnBattery: {
@@ -1678,7 +1678,7 @@ extension.skeleton.main.layers.section.player.on.click = {
 			storage: 'player_playback_speed_button',
 			id: 'player_playback_speed_button'
 		},
-		
+
 		player_playback_speed_button_b: {
 			component: 'switch',
 			text: 'playbackSpeedButton',
@@ -1695,7 +1695,7 @@ extension.skeleton.main.layers.section.player.on.click = {
 			step: 0.05,
 			value: 1.25
 		},
-		
+
 		player_cinema_mode_button: {
 			component: 'switch',
 			text: 'player_cinema_mode_button',

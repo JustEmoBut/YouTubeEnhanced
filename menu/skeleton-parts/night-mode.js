@@ -54,8 +54,8 @@ extension.skeleton.header.sectionEnd.menu.on.click.nightMode = {
 					}],
 					onchange: function () {
 						setTimeout(() => {
-						extension.features.bluelight();
-						extension.features.dim();
+							extension.features.bluelight();
+							extension.features.dim();
 						}, 100);
 					},
 				},
@@ -68,8 +68,8 @@ extension.skeleton.header.sectionEnd.menu.on.click.nightMode = {
 					},
 					onchange: function () {
 						setTimeout(() => {
-						extension.features.bluelight();
-						extension.features.dim();
+							extension.features.bluelight();
+							extension.features.dim();
 						}, 100);
 					},
 				},
@@ -82,8 +82,8 @@ extension.skeleton.header.sectionEnd.menu.on.click.nightMode = {
 					},
 					onchange: function () {
 						setTimeout(() => {
-						extension.features.bluelight();
-						extension.features.dim();
+							extension.features.bluelight();
+							extension.features.dim();
 						}, 100);
 					},
 				}

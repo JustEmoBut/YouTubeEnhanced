@@ -21,7 +21,7 @@ const rules = {
 	  ignoreComments: true,
 	  ignoreRegExpLiterals: true
 	}]
-  };
+};
 
 import globals from "globals";
 import path from "node:path";

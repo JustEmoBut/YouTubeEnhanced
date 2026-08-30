@@ -256,7 +256,7 @@ chrome.windows.onFocusChanged.addListener(function (wId) {
 /*--------------------------------------------------------------
 # EXTENSION API SCRIPT INJECTION (for Safari)
 --------------------------------------------------------------*/
-async function injectFilesInMainWorld(tabId, frameId, files) {
+async function injectFilesInMainWorld (tabId, frameId, files) {
 	if (!chrome.scripting?.insertCSS || !chrome.scripting?.executeScript) {
 		throw new Error('chrome.scripting main-world injection failed');
 	}

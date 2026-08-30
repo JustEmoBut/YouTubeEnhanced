@@ -1,5 +1,5 @@
 class FakeElement {
-	constructor(tagName, id = '', className = '') {
+	constructor (tagName, id = '', className = '') {
 		this.tagName = tagName.toUpperCase();
 		this.nodeName = this.tagName;
 		this.id = id;
@@ -13,7 +13,7 @@ class FakeElement {
 		this.offsetWidth = 800;
 	}
 
-	appendChild(child) {
+	appendChild (child) {
 		if (!child) return child;
 		if (child.parentElement) {
 			child.parentElement.children = child.parentElement.children.filter((node) => node !== child);
@@ -24,27 +24,27 @@ class FakeElement {
 		return child;
 	}
 
-	hasAttribute(name) {
+	hasAttribute (name) {
 		return Object.prototype.hasOwnProperty.call(this.attributes, name);
 	}
 
-	setAttribute(name, value) {
+	setAttribute (name, value) {
 		this.attributes[name] = String(value);
 	}
 
-	removeAttribute(name) {
+	removeAttribute (name) {
 		delete this.attributes[name];
 	}
 }
 
-function descendants(node) {
+function descendants (node) {
 	return node.children.flatMap((child) => [child, ...descendants(child)]);
 }
 
-function createDocument(includeComments = true) {
+function createDocument (includeComments = true) {
 	const elements = {};
 
-	function el(tagName, id = '', className = '') {
+	function el (tagName, id = '', className = '') {
 		const node = new FakeElement(tagName, id, className);
 		if (id) elements[id] = node;
 		return node;
@@ -91,11 +91,11 @@ function createDocument(includeComments = true) {
 		below.appendChild(el('div', 'comments'));
 	}
 
-	function findById(id) {
+	function findById (id) {
 		return elements[id] || null;
 	}
 
-	function querySelector(selector) {
+	function querySelector (selector) {
 		if (selector === '#comments') return findById('comments');
 		if (selector === '#player .ytp-chrome-bottom') return chrome;
 		if (selector === '#container .ytp-chrome-bottom') return null;
@@ -124,7 +124,7 @@ function createDocument(includeComments = true) {
 	};
 }
 
-function installBrowserStubs(includeComments = true) {
+function installBrowserStubs (includeComments = true) {
 	const observers = [];
 	const document = createDocument(includeComments);
 
@@ -157,7 +157,7 @@ function installBrowserStubs(includeComments = true) {
 	};
 }
 
-function loadAppearance() {
+function loadAppearance () {
 	jest.resetModules();
 	global.ImprovedTube = {
 		storage: {

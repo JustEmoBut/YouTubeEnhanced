@@ -143,24 +143,24 @@ ImprovedTube.shortcutsListeners = {
 		}
 	},
 	wheel: function (event) {
-	const player = ImprovedTube.elements.player;
-	if (!player) return;
+		const player = ImprovedTube.elements.player;
+		if (!player) return;
 
-	const path = event.composedPath?.() || [];
+		const path = event.composedPath?.() || [];
 
-	if (
-		!player.matches(':hover') &&
+		if (
+			!player.matches(':hover') &&
 		!path.includes(player) &&
 		!path.includes(ImprovedTube.elements.video)
-	) return;
+		) return;
 
-	ImprovedTube.input.pressed.wheel = event.deltaY > 0 ? 1 : -1;
-	ImprovedTube.input.pressed.alt = event.altKey;
-	ImprovedTube.input.pressed.ctrl = event.ctrlKey;
-	ImprovedTube.input.pressed.shift = event.shiftKey;
+		ImprovedTube.input.pressed.wheel = event.deltaY > 0 ? 1 : -1;
+		ImprovedTube.input.pressed.alt = event.altKey;
+		ImprovedTube.input.pressed.ctrl = event.ctrlKey;
+		ImprovedTube.input.pressed.shift = event.shiftKey;
 
-	ImprovedTube.shortcutsHandler();
-},
+		ImprovedTube.shortcutsHandler();
+	},
 	'improvedtube-blur': function () {
 		ImprovedTube.input.pressed.keys.clear();
 		ImprovedTube.input.pressed.wheel = 0
@@ -429,10 +429,11 @@ ImprovedTube.shortcutIncreasePlaybackSpeed = function (decrease) {
 	}
 	if (decrease) {
 		// Slow down near 0   // Chrome's minimum is 0.0625. Otherwise this could seamlessly turn into single frame steps.
-		newSpeed = (speed - value < 0.1) ? Math.max(Number(speed*0.7).toFixed(2),0.0625) : (speed - value);
+		newSpeed = (speed - value < 0.1) ? Math.max(Number(speed*0.7).toFixed(2), 0.0625) : (speed - value);
 	} else {
 		// Aligning at 1.0 instead of passing by 1:
-		if ( (speed < 1 && speed > 1-ImprovedTube.storage.shortcuts_playback_speed_step) || (speed > 1 && speed < 1+ImprovedTube.storage.shortcuts_playback_speed_step) ) {newSpeed = 1;
+		if ( (speed < 1 && speed > 1-ImprovedTube.storage.shortcuts_playback_speed_step) || (speed > 1 && speed < 1+ImprovedTube.storage.shortcuts_playback_speed_step) ) {
+			newSpeed = 1;
 		// Firefox doesnt limit speed to 16x, we can allow more in Firefox.
 		} else { newSpeed = (speed + value > 16) ? 16 : (speed + value); }
 	}
@@ -523,19 +524,29 @@ ImprovedTube.shortcutDislike = function () {
 };
 /*------Report------*/
 ImprovedTube.shortcutReport = function () {
-	try {document.querySelectorAll("tp-yt-iron-dropdown").forEach(el => el.style.opacity = 0);
-		document.querySelector('svg path[d^="M7.5,12c0,0.83-0.67,1.5-1.5"]').closest("button").click(); document.querySelectorAll("tp-yt-iron-dropdown").forEach(el => el.style.opacity = 0)}
-	catch {console.log("'...' failed"); setTimeout(function () {try {document.querySelector('svg path[d^="M7.5,12c0,0.83-0.67,1.5-1.5"]').closest("button").click(); document.querySelectorAll("tp-yt-iron-dropdown").forEach(el => el.style.opacity = 0)}
-	catch {console.log("'...' failed2")}}, 100) }
-
-	setTimeout(function () {try {document.querySelectorAll("tp-yt-iron-dropdown").forEach(el => el.style.opacity = 0); document.querySelector('tp-yt-iron-dropdown svg path[d^="M13.18,4l0.24,1.2L13.58,6h0.82H19v7h-5.18l-0"]').closest("tp-yt-paper-item").click();}
-	catch {console.log("report failed"); setTimeout(function ()	{try {document.querySelector('tp-yt-iron-dropdown svg path[d^="M13.18,4l0.24,1.2L13.58,6h0.82H19v7h-5.18l-0"]').closest("tp-yt-paper-item").click();}
-	catch {console.log("report failed2"); document.querySelector('svg path[d^="M7.5,12c0,0.83-0.67,1.5-1.5"]').closest("button").click();}}, 800);
+	try {
+		document.querySelectorAll("tp-yt-iron-dropdown").forEach(el => el.style.opacity = 0);
+		document.querySelector('svg path[d^="M7.5,12c0,0.83-0.67,1.5-1.5"]').closest("button").click(); document.querySelectorAll("tp-yt-iron-dropdown").forEach(el => el.style.opacity = 0)
+	} catch {
+		console.log("'...' failed"); setTimeout(function () {
+			try {document.querySelector('svg path[d^="M7.5,12c0,0.83-0.67,1.5-1.5"]').closest("button").click(); document.querySelectorAll("tp-yt-iron-dropdown").forEach(el => el.style.opacity = 0)} catch {console.log("'...' failed2")}
+		}, 100)
 	}
+
+	setTimeout(function () {
+		try {document.querySelectorAll("tp-yt-iron-dropdown").forEach(el => el.style.opacity = 0); document.querySelector('tp-yt-iron-dropdown svg path[d^="M13.18,4l0.24,1.2L13.58,6h0.82H19v7h-5.18l-0"]').closest("tp-yt-paper-item").click();} catch {
+			console.log("report failed"); setTimeout(function ()	{
+				try {document.querySelector('tp-yt-iron-dropdown svg path[d^="M13.18,4l0.24,1.2L13.58,6h0.82H19v7h-5.18l-0"]').closest("tp-yt-paper-item").click();} catch {console.log("report failed2"); document.querySelector('svg path[d^="M7.5,12c0,0.83-0.67,1.5-1.5"]').closest("button").click();}
+			}, 800);
+		}
 	}, 200);
 
-	setTimeout(function () {try {document.querySelectorAll("tp-yt-iron-dropdown").forEach(el => el.style.opacity = 1)} catch {console.log("dropdown visible failed");
-		setTimeout(function () {try {document.querySelectorAll("tp-yt-iron-dropdown").forEach(el => el.style.opacity = 1)} catch {console.log("dropdown visible failed2");}}, 1700)}}, 700)
+	setTimeout(function () {
+		try {document.querySelectorAll("tp-yt-iron-dropdown").forEach(el => el.style.opacity = 1)} catch {
+			console.log("dropdown visible failed");
+			setTimeout(function () {try {document.querySelectorAll("tp-yt-iron-dropdown").forEach(el => el.style.opacity = 1)} catch {console.log("dropdown visible failed2");}}, 1700)
+		}
+	}, 700)
 }
 /*------------------------------------------------------------------------------
 4.7.24 SUBSCRIBE
@@ -654,16 +665,17 @@ ImprovedTube.shortcutRotateVideo = function () {
 
 	if (rotate == 90 || rotate == 270) {
 		var is_vertical_video = video.videoHeight > video.videoWidth;
-												if (
-											document.querySelector("ytd-watch-flexy[theater]") && document.querySelector('ytd-app:not([player-fullscreen_]) ytd-watch-flexy:not([fullscreen])')
-											) { transform += ' scale(' + (is_vertical_video ? video.clientWidth : video.clientHeight) / (is_vertical_video ? video.clientHeight : video.clientWidth) + ')';
-													} else {
-											transform += ' scale(' + (is_vertical_video ? player.clientWidth : player.clientHeight) / (is_vertical_video ? player.clientHeight : player.clientWidth) + ')';
-										}
+		if (
+			document.querySelector("ytd-watch-flexy[theater]") && document.querySelector('ytd-app:not([player-fullscreen_]) ytd-watch-flexy:not([fullscreen])')
+		) {
+			transform += ' scale(' + (is_vertical_video ? video.clientWidth : video.clientHeight) / (is_vertical_video ? video.clientHeight : video.clientWidth) + ')';
+		} else {
+			transform += ' scale(' + (is_vertical_video ? player.clientWidth : player.clientHeight) / (is_vertical_video ? player.clientHeight : player.clientWidth) + ')';
+		}
 	}
 	video.style.setProperty("transform", transform);
 };
-ImprovedTube.shortcutActivateFitToWindow = function() {
+ImprovedTube.shortcutActivateFitToWindow = function () {
 	ImprovedTube.toggleFitToWindow();
 };
 /*------------------------------------------------------------------------------
@@ -674,7 +686,7 @@ ImprovedTube.shortcutCinemaMode = function () {
 	var playerContainerDefault = document.getElementById('player-container');
 	var ytdPlayer = document.getElementById('ytd-player');
 
-	function toggle(container) {
+	function toggle (container) {
 		if (!container) return;
 		if (container.style.zIndex == 10000) {
 			container.style.zIndex = 1;
@@ -718,7 +730,7 @@ ImprovedTube.shortcutRefreshCategories = function () {
 		const allChips = chipContainer.querySelectorAll('yt-chip-cloud-chip-renderer button');
 		if (allChips.length > 1) {
 			allChips[1].click();
-			setTimeout(function() {
+			setTimeout(function () {
 				allChips[0].click();
 			}, 200);
 		}
@@ -731,8 +743,10 @@ ImprovedTube.shortcutRefreshCategories = function () {
 4.7.33 SMART SPEED TOGGLE
 ------------------------------------------------------------------------------*/
 ImprovedTube.shortcutSmartSpeed = function () {
-	if (ImprovedTube.storage.smart_speed === false) { if(ImprovedTube.heatmap) {ImprovedTube.heatmap.init(); };
-    } else if (ImprovedTube.storage.smart_speed === true) { if(ImprovedTube.heatmap) { ImprovedTube.heatmap.isEnabled = false; document.querySelector("video").playbackRate = 1.0; }
-    }
+	if (ImprovedTube.storage.smart_speed === false) {
+		if (ImprovedTube.heatmap) {ImprovedTube.heatmap.init(); };
+	} else if (ImprovedTube.storage.smart_speed === true) {
+		if (ImprovedTube.heatmap) { ImprovedTube.heatmap.isEnabled = false; document.querySelector("video").playbackRate = 1.0; }
+	}
 	this.storage.smart_speed = !this.storage.smart_speed;
 };

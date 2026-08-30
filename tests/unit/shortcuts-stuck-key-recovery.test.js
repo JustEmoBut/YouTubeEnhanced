@@ -21,7 +21,7 @@ const SHORTCUTS_SRC = path.join(
 	'../../js&css/web-accessible/www.youtube.com/shortcuts.js'
 );
 
-function makeImprovedTube() {
+function makeImprovedTube () {
 	return {
 		// one active shortcut (Space -> play/pause) so shortcutsInit installs listeners
 		storage: { shortcut_play_pause: { keys: { '32': true } } },
@@ -38,7 +38,7 @@ function makeImprovedTube() {
 
 // Load the real shortcuts.js into a sandbox with minimal window/document stand-ins
 // (Node's built-in EventTarget), then run shortcutsInit() to wire the listeners.
-function loadShortcuts() {
+function loadShortcuts () {
 	const improvedTube = makeImprovedTube();
 	const win = new EventTarget();
 	const doc = new EventTarget();

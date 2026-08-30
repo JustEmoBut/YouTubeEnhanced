@@ -24,7 +24,7 @@ ImprovedTube.channelDefaultTab = function (a) {
 4.6.2 PLAY ALL BUTTON (Exclude Shorts)
 ------------------------------------------------------------------------------*/
 
-function itIsShorts(node) {
+function itIsShorts (node) {
 	if (!node) return false;
 	const a = node.querySelector('a#thumbnail, a.yt-simple-endpoint[href]');
 	const href = (a && a.getAttribute('href')) || '';
@@ -42,9 +42,9 @@ function itIsShorts(node) {
 	if (/\/shorts\//.test(dataHref)) return true;
 
 	return false;
-  }
+}
 
-  function itCollectVideoIds(opts) {
+function itCollectVideoIds (opts) {
 	const excludeShorts = !!(opts && opts.excludeShorts);
 	const limit = (opts && opts.limit) || 50;
 	const selectors = [
@@ -64,19 +64,19 @@ function itIsShorts(node) {
 
 	  let id = '';
 	  try {
-		const url = new URL(a.href, location.origin);
-		id = url.searchParams.get('v') || '';
+			const url = new URL(a.href, location.origin);
+			id = url.searchParams.get('v') || '';
 	  } catch (_) {
-		const href = a.getAttribute('href') || '';
-		const m = href.match(/[?&]v=([^&]+)/);
-		id = (m && m[1]) || '';
+			const href = a.getAttribute('href') || '';
+			const m = href.match(/[?&]v=([^&]+)/);
+			id = (m && m[1]) || '';
 	  }
 
 	  if (id) ids.push(id);
 	  if (ids.length >= limit) break;
 	}
 	return ids;
-  }
+}
 
 /*------------------------------------------------------------------------------
 4.6.3 PLAY ALL BUTTON
@@ -108,13 +108,13 @@ ImprovedTube.channelPlayAllButton = function () {
 				if (isMetaOpen) return;
 				const defaultFlag = true;
 				const go = (excludeShorts) => {
-				if (!excludeShorts) return;
+					if (!excludeShorts) return;
 
-				const ids = itCollectVideoIds({ excludeShorts: true, limit: 50 });
-				if (ids.length) {
-					e.preventDefault();
-					location.href = '/watch_videos?video_ids=' + ids.join(',');
-				}
+					const ids = itCollectVideoIds({ excludeShorts: true, limit: 50 });
+					if (ids.length) {
+						e.preventDefault();
+						location.href = '/watch_videos?video_ids=' + ids.join(',');
+					}
 				};
 
 				if (this?.storage && Object.prototype.hasOwnProperty.call(this.storage, 'exclude_shorts_in_play_all')) {
@@ -123,16 +123,16 @@ ImprovedTube.channelPlayAllButton = function () {
 					e.preventDefault();
 					chrome.storage.sync.get({ exclude_shorts_in_play_all: defaultFlag }, (cfg) => {
 					  if (cfg.exclude_shorts_in_play_all) {
-						const ids = itCollectVideoIds({ excludeShorts: true, limit: 50 });
-						if (ids.length) {
+							const ids = itCollectVideoIds({ excludeShorts: true, limit: 50 });
+							if (ids.length) {
 						  location.href = '/watch_videos?video_ids=' + ids.join(',');
 						  return;
-						}
+							}
 					  }
 					  location.href = button.href;
 					});
 				} else {
-				go(defaultFlag);
+					go(defaultFlag);
 				}
 			});
 
@@ -153,9 +153,9 @@ ImprovedTube.channelCompactTheme = function () {
 		compact.hasApplied = true
 		initialLoad();
 		document.querySelector("#sections #items") ? styleWithListeners() : styleWithInterval();
-	}
-	else if (compact.hasApplied) { //cleanup
-		try {clearInterval(compact.listener)
+	} else if (compact.hasApplied) { //cleanup
+		try {
+			clearInterval(compact.listener)
 		} catch (err) {console.log("ERR: We couldn't clear listener. Reload page")}
 		if (compact.eventHandlerFns.length) removeListeners();
 		if (compact.styles.length) removeStyles()

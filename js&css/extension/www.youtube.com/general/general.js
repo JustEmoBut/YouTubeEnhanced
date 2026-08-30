@@ -95,7 +95,7 @@ extension.features.youtubeHomePage = function (anything) {
  * Finds entries belonging to subscriptions in the sidebar.
  * @returns {Element[] | Error}
  */
-function subscriptionEntries() {
+function subscriptionEntries () {
 	for (const section of document.querySelectorAll("ytd-guide-section-renderer")) {
 		const headerLink = section.querySelector('a[href="/feed/channels"]');
 		if (headerLink) { // Exists only in the subscriptions section
@@ -331,7 +331,7 @@ extension.features.popupWindowButtons.findVideoLink = function (element) {
 # ADD "WATCH LATER" BUTTONS
 --------------------------------------------------------------*/
 extension.features.watchLaterButtons = function (event) {
-	function getVideoId(url) {
+	function getVideoId (url) {
 		if (!url) {
 			return null;
 		}
@@ -342,7 +342,7 @@ extension.features.watchLaterButtons = function (event) {
 		return watchMatch ? watchMatch[1] : shortsMatch ? shortsMatch[1] : null;
 	}
 
-	function findThumbnail(target) {
+	function findThumbnail (target) {
 		while (target && target.parentNode) {
 			if (
 				target.nodeName === 'A' &&
@@ -359,7 +359,7 @@ extension.features.watchLaterButtons = function (event) {
 		}
 	}
 
-	function findNativeWatchLaterButton(thumbnail) {
+	function findNativeWatchLaterButton (thumbnail) {
 		var container = thumbnail.closest('ytd-rich-item-renderer, ytd-video-renderer, ytd-grid-video-renderer, ytd-compact-video-renderer, ytd-playlist-video-renderer, yt-lockup-view-model') || thumbnail,
 			button = container.querySelector('button[aria-label*="Watch later" i], button[title*="Watch later" i]');
 
@@ -383,7 +383,7 @@ extension.features.watchLaterButtons = function (event) {
 		}
 	}
 
-	function getYtConfigValue(key) {
+	function getYtConfigValue (key) {
 		var pattern = new RegExp('"' + key + '":"([^"]+)"'),
 			scripts = document.scripts;
 
@@ -396,7 +396,7 @@ extension.features.watchLaterButtons = function (event) {
 		}
 	}
 
-	function getYtConfigObject(key) {
+	function getYtConfigObject (key) {
 		var pattern = new RegExp('"' + key + '":(\\{.*?\\}),"' + key.replace(/_CONTEXT$/, '') + '_'),
 			scripts = document.scripts;
 
@@ -413,7 +413,7 @@ extension.features.watchLaterButtons = function (event) {
 		}
 	}
 
-	function addWithInnertube(videoId, button) {
+	function addWithInnertube (videoId, button) {
 		var apiKey = getYtConfigValue('INNERTUBE_API_KEY'),
 			context = getYtConfigObject('INNERTUBE_CONTEXT'),
 			clientVersion = getYtConfigValue('INNERTUBE_CLIENT_VERSION');
@@ -459,7 +459,7 @@ extension.features.watchLaterButtons = function (event) {
 		});
 	}
 
-	function addWatchLaterButton(thumbnail) {
+	function addWatchLaterButton (thumbnail) {
 		var videoId = thumbnail ? getVideoId(thumbnail.href) : null;
 
 		if (thumbnail && thumbnail.itWatchLaterButton && !thumbnail.contains(thumbnail.itWatchLaterButton)) {
@@ -500,7 +500,7 @@ extension.features.watchLaterButtons = function (event) {
 
 					nativeButton.click();
 
-					(function checkToggle() {
+					(function checkToggle () {
 						var currentAriaPressed = nativeButton.getAttribute('aria-pressed'),
 							currentAriaLabel = nativeButton.getAttribute('aria-label');
 
@@ -520,7 +520,7 @@ extension.features.watchLaterButtons = function (event) {
 		}
 	}
 
-	function addWatchLaterButtons(root) {
+	function addWatchLaterButtons (root) {
 		var thumbnails = (root || document).querySelectorAll ? (root || document).querySelectorAll('a#thumbnail, a.thumb-link, a.ytLockupViewModelContentImage') : [];
 
 		for (var i = 0, l = thumbnails.length; i < l; i++) {
@@ -528,7 +528,7 @@ extension.features.watchLaterButtons = function (event) {
 		}
 	}
 
-	function removeWatchLaterButtons() {
+	function removeWatchLaterButtons () {
 		var buttons = document.querySelectorAll('.it-watch-later-button');
 
 		for (var i = 0, l = buttons.length; i < l; i++) {
@@ -743,121 +743,121 @@ extension.features.trackWatchedVideos = function () {
 --------------------------------------------------------------*/
 extension.features.thumbnailsQuality = function (anything) {
 
-    var option = extension.storage.get('thumbnails_quality');
-    var qualityRegex = /(default\.jpg|mqdefault\.jpg|hqdefault\.jpg|hq720\.jpg|sddefault\.jpg|maxresdefault\.jpg)/;
+	var option = extension.storage.get('thumbnails_quality');
+	var qualityRegex = /(default\.jpg|mqdefault\.jpg|hqdefault\.jpg|hq720\.jpg|sddefault\.jpg|maxresdefault\.jpg)/;
 
-    // Extracts the unique 11-character YouTube Video ID from an image URL
-    function getVideoId(url) {
-        if (!url) return null;
-        // Matches standard /vi/ and modern /vi_webp/ paths
-        var match = url.match(/\/vi(?:_webp)?\/([a-zA-Z0-9_-]{11})/);
-        return match ? match[1] : null;
-    }
+	// Extracts the unique 11-character YouTube Video ID from an image URL
+	function getVideoId (url) {
+		if (!url) return null;
+		// Matches standard /vi/ and modern /vi_webp/ paths
+		var match = url.match(/\/vi(?:_webp)?\/([a-zA-Z0-9_-]{11})/);
+		return match ? match[1] : null;
+	}
 
-    function handler(thumbnail) {
-        if (!thumbnail.dataset.defaultSrc && qualityRegex.test(thumbnail.src)) {
+	function handler (thumbnail) {
+		if (!thumbnail.dataset.defaultSrc && qualityRegex.test(thumbnail.src)) {
 
-            var originalSrc = thumbnail.src;
-            thumbnail.dataset.defaultSrc = originalSrc;
+			var originalSrc = thumbnail.src;
+			thumbnail.dataset.defaultSrc = originalSrc;
 
-            // Strip query parameters (?sqp=...) which often block maxresdefault upgrades
-            var cleanSrc = originalSrc.split('?')[0];
-            var newSrc = cleanSrc.replace(qualityRegex, option + '.jpg');
+			// Strip query parameters (?sqp=...) which often block maxresdefault upgrades
+			var cleanSrc = originalSrc.split('?')[0];
+			var newSrc = cleanSrc.replace(qualityRegex, option + '.jpg');
 
-            var tempImg = new Image();
+			var tempImg = new Image();
 
-            tempImg.onload = function () {
-                // Ensure DOM element hasn't been recycled while downloading
-                if (thumbnail.dataset.defaultSrc === originalSrc && this.naturalHeight > 90) {
-                    thumbnail.src = newSrc;
-                }
-                tempImg.onload = null;
-                tempImg.onerror = null;
-            };
+			tempImg.onload = function () {
+				// Ensure DOM element hasn't been recycled while downloading
+				if (thumbnail.dataset.defaultSrc === originalSrc && this.naturalHeight > 90) {
+					thumbnail.src = newSrc;
+				}
+				tempImg.onload = null;
+				tempImg.onerror = null;
+			};
 
-            tempImg.onerror = function () {
-                tempImg.onload = null;
-                tempImg.onerror = null;
-            };
+			tempImg.onerror = function () {
+				tempImg.onload = null;
+				tempImg.onerror = null;
+			};
 
-            tempImg.src = newSrc;
-        }
-    }
+			tempImg.src = newSrc;
+		}
+	}
 
-    if (['default', 'mqdefault', 'hqdefault', 'sddefault', 'maxresdefault'].includes(option)) {
-        let thumbnails = document.querySelectorAll('img');
+	if (['default', 'mqdefault', 'hqdefault', 'sddefault', 'maxresdefault'].includes(option)) {
+		let thumbnails = document.querySelectorAll('img');
 
-        for (let i = 0; i < thumbnails.length; i++) {
-            handler(thumbnails[i]);
-        }
+		for (let i = 0; i < thumbnails.length; i++) {
+			handler(thumbnails[i]);
+		}
 
-        if (this.thumbnailsQuality.observer) {
-            this.thumbnailsQuality.observer.disconnect();
-            this.thumbnailsQuality.observer = null;
-        }
+		if (this.thumbnailsQuality.observer) {
+			this.thumbnailsQuality.observer.disconnect();
+			this.thumbnailsQuality.observer = null;
+		}
 
-        this.thumbnailsQuality.observer = new MutationObserver(function (mutationList) {
-            for (let i = 0; i < mutationList.length; i++) {
-                let mutation = mutationList[i];
+		this.thumbnailsQuality.observer = new MutationObserver(function (mutationList) {
+			for (let i = 0; i < mutationList.length; i++) {
+				let mutation = mutationList[i];
 
-                // Handle brand new DOM injections (Infinite Scroll)
-                if (mutation.type === 'childList') {
-                    for (let j = 0; j < mutation.addedNodes.length; j++) {
-                        let node = mutation.addedNodes[j];
-                        if (node.nodeName === 'IMG') {
-                            handler(node);
-                        } else if (node.querySelectorAll) {
-                            let nestedImgs = node.querySelectorAll('img');
-                            for (let k = 0; k < nestedImgs.length; k++) {
-                                handler(nestedImgs[k]);
-                            }
-                        }
-                    }
-                }
+				// Handle brand new DOM injections (Infinite Scroll)
+				if (mutation.type === 'childList') {
+					for (let j = 0; j < mutation.addedNodes.length; j++) {
+						let node = mutation.addedNodes[j];
+						if (node.nodeName === 'IMG') {
+							handler(node);
+						} else if (node.querySelectorAll) {
+							let nestedImgs = node.querySelectorAll('img');
+							for (let k = 0; k < nestedImgs.length; k++) {
+								handler(nestedImgs[k]);
+							}
+						}
+					}
+				}
 
-                // Handle recycled DOM nodes (src attribute swap)
-                if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
-                    if (mutation.target.tagName !== 'IMG') continue;
+				// Handle recycled DOM nodes (src attribute swap)
+				if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
+					if (mutation.target.tagName !== 'IMG') continue;
 
-                    let target = mutation.target;
+					let target = mutation.target;
 
-                    // Identity Check (Has YouTube repurposed this <img> for a new video?)
-                    if (target.dataset.defaultSrc) {
-                        let storedId = getVideoId(target.dataset.defaultSrc);
-                        let currentId = getVideoId(target.src);
+					// Identity Check (Has YouTube repurposed this <img> for a new video?)
+					if (target.dataset.defaultSrc) {
+						let storedId = getVideoId(target.dataset.defaultSrc);
+						let currentId = getVideoId(target.src);
 
-                        // If the IDs differ (or aren't standard videos), clear the poisoned state
-                        if (storedId !== currentId) {
-                            target.removeAttribute('data-default-src');
-                        }
-                    }
+						// If the IDs differ (or aren't standard videos), clear the poisoned state
+						if (storedId !== currentId) {
+							target.removeAttribute('data-default-src');
+						}
+					}
 
-                    handler(target);
-                }
-            }
-        });
+					handler(target);
+				}
+			}
+		});
 
-        this.thumbnailsQuality.observer.observe(document.documentElement, {
-            attributeFilter: ['src'],
-            attributes: true,
-            childList: true,
-            subtree: true
-        });
+		this.thumbnailsQuality.observer.observe(document.documentElement, {
+			attributeFilter: ['src'],
+			attributes: true,
+			childList: true,
+			subtree: true
+		});
 
-    } else if (anything === true) {
-        let thumbnails = document.querySelectorAll('img[data-default-src]');
+	} else if (anything === true) {
+		let thumbnails = document.querySelectorAll('img[data-default-src]');
 
-        for (let i = 0; i < thumbnails.length; i++) {
-            let thumbnail = thumbnails[i];
-            thumbnail.src = thumbnail.dataset.defaultSrc;
-            thumbnail.removeAttribute('data-default-src');
-        }
+		for (let i = 0; i < thumbnails.length; i++) {
+			let thumbnail = thumbnails[i];
+			thumbnail.src = thumbnail.dataset.defaultSrc;
+			thumbnail.removeAttribute('data-default-src');
+		}
 
-        if (this.thumbnailsQuality.observer) {
-            this.thumbnailsQuality.observer.disconnect();
-            this.thumbnailsQuality.observer = null;
-        }
-    }
+		if (this.thumbnailsQuality.observer) {
+			this.thumbnailsQuality.observer.disconnect();
+			this.thumbnailsQuality.observer = null;
+		}
+	}
 };
 
 /*--------------------------------------------------------------
@@ -883,44 +883,43 @@ extension.features.disableThumbnailPlayback = function (event) {
 # MUTE THUMBNAIL PREVIEWS
 --------------------------------------------------------------*/
 extension.features.muteThumbnailPreviews = function () {
-if (extension.storage.get('mute_thumbnail_previews') === true) {
-	var PREVIEW_SELECTORS = '#inline-preview-player, ytd-video-preview, .ytd-video-preview, .ytp-inline-preview';
+	if (extension.storage.get('mute_thumbnail_previews') === true) {
+		var PREVIEW_SELECTORS = '#inline-preview-player, ytd-video-preview, .ytd-video-preview, .ytp-inline-preview';
 
-	function isPreviewVideo(video) {
-		return video && video.closest && video.closest(PREVIEW_SELECTORS);
-	}
-
-	function forceMute(video) {
-		if (!video.muted) {
-			video.muted = true;
+		function isPreviewVideo (video) {
+			return video && video.closest && video.closest(PREVIEW_SELECTORS);
 		}
-		// Attach a listener to re-mute if YouTube tries to unmute
-		if (!video._itMuteEnforced) {
-			video._itMuteEnforced = true;
-			video.addEventListener('volumechange', function () {
-				if (!this.muted && isPreviewVideo(this)) {
-					this.muted = true;
-				}
-			});
-			// Also re-mute on play in case audio is restored
-			video.addEventListener('play', function () {
-				if (!this.muted && isPreviewVideo(this)) {
-					this.muted = true;
-				}
-			});
-		}
-	}
 
-	function mutePreviewVideos(root) {
-		if (!root || !root.querySelectorAll) return;
-		var videos = root.querySelectorAll('video');
-		for (var i = 0; i < videos.length; i++) {
-			if (isPreviewVideo(videos[i])) {
-				forceMute(videos[i]);
+		function forceMute (video) {
+			if (!video.muted) {
+				video.muted = true;
+			}
+			// Attach a listener to re-mute if YouTube tries to unmute
+			if (!video._itMuteEnforced) {
+				video._itMuteEnforced = true;
+				video.addEventListener('volumechange', function () {
+					if (!this.muted && isPreviewVideo(this)) {
+						this.muted = true;
+					}
+				});
+				// Also re-mute on play in case audio is restored
+				video.addEventListener('play', function () {
+					if (!this.muted && isPreviewVideo(this)) {
+						this.muted = true;
+					}
+				});
 			}
 		}
-	}
 
+		function mutePreviewVideos (root) {
+			if (!root || !root.querySelectorAll) return;
+			var videos = root.querySelectorAll('video');
+			for (var i = 0; i < videos.length; i++) {
+				if (isPreviewVideo(videos[i])) {
+					forceMute(videos[i]);
+				}
+			}
+		}
 
 		// Mute any currently existing preview videos
 		mutePreviewVideos(document);
@@ -995,7 +994,7 @@ extension.features.openNewTab = function () {
 
 			inputField.addEventListener("input", () => searchedAlready = false);
 
-			function applySuggestionListeners() {
+			function applySuggestionListeners () {
 				const suggestionContainers = document.querySelectorAll("div[class^='sbqs'], div[class^='sbpqs']");
 				suggestionContainers.forEach((suggestionsContainer) => {
 					suggestionsContainer.addEventListener("mousedown", (event) => {
@@ -1009,7 +1008,7 @@ extension.features.openNewTab = function () {
 				});
 			}
 
-			function performSearchNewTab(query) {
+			function performSearchNewTab (query) {
 				inputField.value = "";
 				inputField.focus();
 				const newTabURL = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
@@ -1201,7 +1200,7 @@ extension.features.hideWatchLater = function () {
 	let watchLaterIds = new Set();
 	let isFetching = false;
 
-	function fetchWatchLaterList() {
+	function fetchWatchLaterList () {
 		if (isFetching || watchLaterIds.size > 0) return;
 		isFetching = true;
 
@@ -1219,7 +1218,7 @@ extension.features.hideWatchLater = function () {
 			.finally(() => isFetching = false);
 	}
 
-	function hideVideos() {
+	function hideVideos () {
 		if (watchLaterIds.size === 0) return;
 		const videos = document.querySelectorAll('ytd-rich-item-renderer, yt-lockup-view-model');
 		videos.forEach(video => {
@@ -1234,7 +1233,7 @@ extension.features.hideWatchLater = function () {
 	}
 
 	// Standard "Body Check" to make sure page exists
-	function init() {
+	function init () {
 		if (!document.body) {
 			setTimeout(init, 100);
 			return;
@@ -1257,332 +1256,332 @@ extension.features.hideWatchLater();
 --------------------------------------------------------------*/
 
 extension.features.autoVideoRecovery = function () {
-    var feature = extension.features.autoVideoRecovery,
-        previousState = feature.state,
-        STALL_GRACE_MS = 8000,
-        NO_PROGRESS_MS = 10000,
-        RELOAD_DELAY_MS = 2000,
-        RELOAD_AFTER_ATTEMPTS = 3,
-        MAX_RETRY_DELAY_MS = 30000;
+	var feature = extension.features.autoVideoRecovery,
+		previousState = feature.state,
+		STALL_GRACE_MS = 8000,
+		NO_PROGRESS_MS = 10000,
+		RELOAD_DELAY_MS = 2000,
+		RELOAD_AFTER_ATTEMPTS = 3,
+		MAX_RETRY_DELAY_MS = 30000;
 
-    function clearTimer(state, name) {
-        if (state[name]) {
-            clearTimeout(state[name]);
-            state[name] = null;
-        }
-    }
+	function clearTimer (state, name) {
+		if (state[name]) {
+			clearTimeout(state[name]);
+			state[name] = null;
+		}
+	}
 
-    function detachVideo(state) {
-        if (!state.video || !state.handlers) return;
+	function detachVideo (state) {
+		if (!state.video || !state.handlers) return;
 
-        for (var eventName in state.handlers) {
-            state.video.removeEventListener(eventName, state.handlers[eventName]);
-        }
+		for (var eventName in state.handlers) {
+			state.video.removeEventListener(eventName, state.handlers[eventName]);
+		}
 
-        state.video = null;
-        state.handlers = null;
-    }
+		state.video = null;
+		state.handlers = null;
+	}
 
-    function cleanup(state) {
-        if (!state) return;
+	function cleanup (state) {
+		if (!state) return;
 
-        state.active = false;
-        clearTimer(state, 'monitorTimer');
-        clearTimer(state, 'attachTimer');
-        clearTimer(state, 'reloadTimer');
+		state.active = false;
+		clearTimer(state, 'monitorTimer');
+		clearTimer(state, 'attachTimer');
+		clearTimer(state, 'reloadTimer');
 
-        if (state.observer) state.observer.disconnect();
-        if (state.onlineHandler) window.removeEventListener('online', state.onlineHandler);
-        if (state.reloadCleanup) state.reloadCleanup();
+		if (state.observer) state.observer.disconnect();
+		if (state.onlineHandler) window.removeEventListener('online', state.onlineHandler);
+		if (state.reloadCleanup) state.reloadCleanup();
 
-        detachVideo(state);
-    }
+		detachVideo(state);
+	}
 
-    cleanup(previousState);
-    feature.state = null;
+	cleanup(previousState);
+	feature.state = null;
 
-    if (extension.storage.get('auto_video_recovery') !== true) {
-        return;
-    }
+	if (extension.storage.get('auto_video_recovery') !== true) {
+		return;
+	}
 
-    var state = {
-        active: true,
-        attempts: 0,
-        attachTimer: null,
-        hasPlaybackProgress: false,
-        handlers: null,
-        hadMediaError: false,
-        lastErrorAt: 0,
-        lastProgressAt: 0,
-        lastTime: null,
-        monitorTimer: null,
-        nextAttemptAt: 0,
-        observer: null,
-        onlineHandler: null,
-        reloadCleanup: null,
-        reloadTimer: null,
-        reloading: false,
-        shouldResume: false,
-        stalledAt: 0,
-        video: null
-    };
+	var state = {
+		active: true,
+		attempts: 0,
+		attachTimer: null,
+		hasPlaybackProgress: false,
+		handlers: null,
+		hadMediaError: false,
+		lastErrorAt: 0,
+		lastProgressAt: 0,
+		lastTime: null,
+		monitorTimer: null,
+		nextAttemptAt: 0,
+		observer: null,
+		onlineHandler: null,
+		reloadCleanup: null,
+		reloadTimer: null,
+		reloading: false,
+		shouldResume: false,
+		stalledAt: 0,
+		video: null
+	};
 
-    feature.state = state;
+	feature.state = state;
 
-    function getVideo() {
-        return document.querySelector('#movie_player video.html5-main-video, #movie_player video') ||
+	function getVideo () {
+		return document.querySelector('#movie_player video.html5-main-video, #movie_player video') ||
             document.querySelector('video.html5-main-video') || document.querySelector('video');
-    }
+	}
 
-    function stopMonitoring() {
-        clearTimer(state, 'monitorTimer');
-    }
+	function stopMonitoring () {
+		clearTimer(state, 'monitorTimer');
+	}
 
-    function noteProgress() {
-        state.hasPlaybackProgress = true;
-        state.hadMediaError = false;
-        state.stalledAt = 0;
-        state.lastErrorAt = 0;
-        state.attempts = 0;
-        state.nextAttemptAt = 0;
-        state.lastProgressAt = Date.now();
-        stopMonitoring();
-    }
+	function noteProgress () {
+		state.hasPlaybackProgress = true;
+		state.hadMediaError = false;
+		state.stalledAt = 0;
+		state.lastErrorAt = 0;
+		state.attempts = 0;
+		state.nextAttemptAt = 0;
+		state.lastProgressAt = Date.now();
+		stopMonitoring();
+	}
 
-    function scheduleMonitor(delay) {
-        if (!state.active || state.monitorTimer) return;
+	function scheduleMonitor (delay) {
+		if (!state.active || state.monitorTimer) return;
 
-        state.monitorTimer = setTimeout(function () {
-            state.monitorTimer = null;
-            attemptRecovery();
-        }, delay);
-    }
+		state.monitorTimer = setTimeout(function () {
+			state.monitorTimer = null;
+			attemptRecovery();
+		}, delay);
+	}
 
-    function markStalled(video) {
-        // `waiting` is normal while YouTube starts a video. Only recover a stream
-        // that has actually made progress and then stopped advancing.
-        if (!state.active || video !== state.video || video.ended || video.paused || !state.hasPlaybackProgress) return;
+	function markStalled (video) {
+		// `waiting` is normal while YouTube starts a video. Only recover a stream
+		// that has actually made progress and then stopped advancing.
+		if (!state.active || video !== state.video || video.ended || video.paused || !state.hasPlaybackProgress) return;
 
-        state.shouldResume = true;
-        if (!state.stalledAt) state.stalledAt = Date.now();
-        scheduleMonitor(STALL_GRACE_MS);
-    }
+		state.shouldResume = true;
+		if (!state.stalledAt) state.stalledAt = Date.now();
+		scheduleMonitor(STALL_GRACE_MS);
+	}
 
-    function restorePlaybackAfterReload(video, resumeAt) {
-        var completed = false;
+	function restorePlaybackAfterReload (video, resumeAt) {
+		var completed = false;
 
-        function scheduleResumeRetry() {
-            if (!state.active || video !== state.video || !state.shouldResume) return;
+		function scheduleResumeRetry () {
+			if (!state.active || video !== state.video || !state.shouldResume) return;
 
-            state.stalledAt = state.stalledAt || Date.now();
-            scheduleMonitor(Math.max(1000, state.nextAttemptAt - Date.now()));
-        }
+			state.stalledAt = state.stalledAt || Date.now();
+			scheduleMonitor(Math.max(1000, state.nextAttemptAt - Date.now()));
+		}
 
-        function finish() {
-            if (completed) return;
-            completed = true;
-            clearTimer(state, 'reloadTimer');
-            video.removeEventListener('canplay', finish);
-            state.reloadCleanup = null;
-            state.reloading = false;
+		function finish () {
+			if (completed) return;
+			completed = true;
+			clearTimer(state, 'reloadTimer');
+			video.removeEventListener('canplay', finish);
+			state.reloadCleanup = null;
+			state.reloading = false;
 
-            if (!state.active || video !== state.video || !state.shouldResume) return;
+			if (!state.active || video !== state.video || !state.shouldResume) return;
 
-            if (Number.isFinite(resumeAt) && resumeAt > 0 && (!Number.isFinite(video.duration) || resumeAt < video.duration)) {
-                try { video.currentTime = resumeAt; } catch (_) { }
-            }
+			if (Number.isFinite(resumeAt) && resumeAt > 0 && (!Number.isFinite(video.duration) || resumeAt < video.duration)) {
+				try { video.currentTime = resumeAt; } catch (_) { }
+			}
 
-            var playResult;
-            try {
-                playResult = video.play();
-            } catch (_) {
-                scheduleResumeRetry();
-                return;
-            }
+			var playResult;
+			try {
+				playResult = video.play();
+			} catch (_) {
+				scheduleResumeRetry();
+				return;
+			}
 
-            if (playResult && typeof playResult.catch === 'function') {
-                playResult.catch(function () {
-                    // `load()` can abort a pending play request. This is expected
-                    // during recovery, so retry quietly instead of logging an error.
-                    scheduleResumeRetry();
-                });
-            }
-        }
+			if (playResult && typeof playResult.catch === 'function') {
+				playResult.catch(function () {
+					// `load()` can abort a pending play request. This is expected
+					// during recovery, so retry quietly instead of logging an error.
+					scheduleResumeRetry();
+				});
+			}
+		}
 
-        state.reloadCleanup = function () {
-            video.removeEventListener('canplay', finish);
-        };
-        video.addEventListener('canplay', finish);
-        state.reloadTimer = setTimeout(finish, 5000);
+		state.reloadCleanup = function () {
+			video.removeEventListener('canplay', finish);
+		};
+		video.addEventListener('canplay', finish);
+		state.reloadTimer = setTimeout(finish, 5000);
 
-        try {
-            video.load();
-        } catch (_) {
-            finish();
-            scheduleResumeRetry();
-        }
-    }
+		try {
+			video.load();
+		} catch (_) {
+			finish();
+			scheduleResumeRetry();
+		}
+	}
 
-    function reloadVideo(video, resumeAt) {
-        if (!state.active || state.reloading || video !== state.video) return;
+	function reloadVideo (video, resumeAt) {
+		if (!state.active || state.reloading || video !== state.video) return;
 
-        state.reloading = true;
-        restorePlaybackAfterReload(video, resumeAt);
-    }
+		state.reloading = true;
+		restorePlaybackAfterReload(video, resumeAt);
+	}
 
-    function attemptRecovery() {
-        var video = state.video,
-            now = Date.now(),
-            noProgress;
+	function attemptRecovery () {
+		var video = state.video,
+			now = Date.now(),
+			noProgress;
 
-        if (!state.active || !video || video.ended || !state.shouldResume) return;
+		if (!state.active || !video || video.ended || !state.shouldResume) return;
 
-        if (!navigator.onLine) {
-            scheduleMonitor(1000);
-            return;
-        }
+		if (!navigator.onLine) {
+			scheduleMonitor(1000);
+			return;
+		}
 
-        noProgress = state.hasPlaybackProgress && !video.paused && state.lastProgressAt && now - state.lastProgressAt >= NO_PROGRESS_MS;
-        if (!state.stalledAt && !noProgress) return;
+		noProgress = state.hasPlaybackProgress && !video.paused && state.lastProgressAt && now - state.lastProgressAt >= NO_PROGRESS_MS;
+		if (!state.stalledAt && !noProgress) return;
 
-        if (now < state.nextAttemptAt) {
-            scheduleMonitor(state.nextAttemptAt - now);
-            return;
-        }
+		if (now < state.nextAttemptAt) {
+			scheduleMonitor(state.nextAttemptAt - now);
+			return;
+		}
 
-        state.attempts++;
-        state.nextAttemptAt = now + Math.min(MAX_RETRY_DELAY_MS, 1000 * Math.pow(2, Math.min(state.attempts, 5)));
+		state.attempts++;
+		state.nextAttemptAt = now + Math.min(MAX_RETRY_DELAY_MS, 1000 * Math.pow(2, Math.min(state.attempts, 5)));
 
-        var position = video.currentTime,
-            playResult;
+		var position = video.currentTime,
+			playResult;
 
-        function retryOrReload() {
-            if (!state.active || state.video !== video || !state.shouldResume) return;
+		function retryOrReload () {
+			if (!state.active || state.video !== video || !state.shouldResume) return;
 
-            if (state.hadMediaError || state.attempts >= RELOAD_AFTER_ATTEMPTS) {
-                reloadVideo(video, position);
-            } else {
-                scheduleMonitor(Math.max(1000, state.nextAttemptAt - Date.now()));
-            }
-        }
+			if (state.hadMediaError || state.attempts >= RELOAD_AFTER_ATTEMPTS) {
+				reloadVideo(video, position);
+			} else {
+				scheduleMonitor(Math.max(1000, state.nextAttemptAt - Date.now()));
+			}
+		}
 
-        try {
-            playResult = video.play();
-        } catch (_) {
-            retryOrReload();
-            return;
-        }
+		try {
+			playResult = video.play();
+		} catch (_) {
+			retryOrReload();
+			return;
+		}
 
-        if (playResult && typeof playResult.catch === 'function') {
-            playResult.catch(function () {
-                retryOrReload();
-            });
-        }
+		if (playResult && typeof playResult.catch === 'function') {
+			playResult.catch(function () {
+				retryOrReload();
+			});
+		}
 
-        setTimeout(function () {
-            var stillStalled = state.active && state.video === video && state.shouldResume && !video.ended &&
+		setTimeout(function () {
+			var stillStalled = state.active && state.video === video && state.shouldResume && !video.ended &&
                 !video.paused && (state.stalledAt || (state.lastProgressAt && Date.now() - state.lastProgressAt >= NO_PROGRESS_MS));
 
-            // Reloading the media element is disruptive and can restart normal
-            // startup buffering. Reserve it for a real media error or several
-            // failed, confirmed recovery attempts.
-            if (stillStalled && (state.hadMediaError || state.attempts >= RELOAD_AFTER_ATTEMPTS)) {
-                reloadVideo(video, position);
-            }
-        }, RELOAD_DELAY_MS);
+			// Reloading the media element is disruptive and can restart normal
+			// startup buffering. Reserve it for a real media error or several
+			// failed, confirmed recovery attempts.
+			if (stillStalled && (state.hadMediaError || state.attempts >= RELOAD_AFTER_ATTEMPTS)) {
+				reloadVideo(video, position);
+			}
+		}, RELOAD_DELAY_MS);
 
-        scheduleMonitor(state.nextAttemptAt - now);
-    }
+		scheduleMonitor(state.nextAttemptAt - now);
+	}
 
-    function attachVideo(video) {
-        if (!state.active || !video || state.video === video) return;
+	function attachVideo (video) {
+		if (!state.active || !video || state.video === video) return;
 
-        detachVideo(state);
-        state.video = video;
-        state.lastTime = video.currentTime;
-        state.lastProgressAt = Date.now();
-        state.hasPlaybackProgress = false;
-        state.hadMediaError = false;
-        state.shouldResume = !video.paused && !video.ended;
+		detachVideo(state);
+		state.video = video;
+		state.lastTime = video.currentTime;
+		state.lastProgressAt = Date.now();
+		state.hasPlaybackProgress = false;
+		state.hadMediaError = false;
+		state.shouldResume = !video.paused && !video.ended;
 
-        state.handlers = {
-            play: function () {
-                state.shouldResume = true;
-                state.lastProgressAt = Date.now();
-            },
-            loadedmetadata: function () {
-                // YouTube usually reuses the same <video> node between videos.
-                // Do not carry the previous video's playback state into startup.
-                state.hasPlaybackProgress = false;
-                state.hadMediaError = false;
-                state.lastTime = video.currentTime;
-                state.lastProgressAt = Date.now();
-                state.stalledAt = 0;
-                state.attempts = 0;
-                stopMonitoring();
-            },
-            playing: noteProgress,
-            timeupdate: function () {
-                if (video.currentTime !== state.lastTime) {
-                    state.lastTime = video.currentTime;
-                    noteProgress();
-                }
-            },
-            waiting: function () { markStalled(video); },
-            stalled: function () { markStalled(video); },
-            error: function () {
-                if (state.shouldResume || !video.paused) {
-                    state.shouldResume = true;
-                    state.hadMediaError = true;
-                    state.lastErrorAt = Date.now();
-                    state.stalledAt = Date.now();
-                    scheduleMonitor(STALL_GRACE_MS);
-                }
-            },
-            pause: function () {
-                // A media error can be followed immediately by a pause event.
-                // Do not mistake that pause for the user's explicit pause.
-                if (!state.reloading && (!state.lastErrorAt || Date.now() - state.lastErrorAt > 1000)) {
-                    state.shouldResume = false;
-                    state.stalledAt = 0;
-                    state.attempts = 0;
-                    stopMonitoring();
-                }
-            },
-            ended: function () {
-                state.shouldResume = false;
-                state.stalledAt = 0;
-                stopMonitoring();
-            }
-        };
+		state.handlers = {
+			play: function () {
+				state.shouldResume = true;
+				state.lastProgressAt = Date.now();
+			},
+			loadedmetadata: function () {
+				// YouTube usually reuses the same <video> node between videos.
+				// Do not carry the previous video's playback state into startup.
+				state.hasPlaybackProgress = false;
+				state.hadMediaError = false;
+				state.lastTime = video.currentTime;
+				state.lastProgressAt = Date.now();
+				state.stalledAt = 0;
+				state.attempts = 0;
+				stopMonitoring();
+			},
+			playing: noteProgress,
+			timeupdate: function () {
+				if (video.currentTime !== state.lastTime) {
+					state.lastTime = video.currentTime;
+					noteProgress();
+				}
+			},
+			waiting: function () { markStalled(video); },
+			stalled: function () { markStalled(video); },
+			error: function () {
+				if (state.shouldResume || !video.paused) {
+					state.shouldResume = true;
+					state.hadMediaError = true;
+					state.lastErrorAt = Date.now();
+					state.stalledAt = Date.now();
+					scheduleMonitor(STALL_GRACE_MS);
+				}
+			},
+			pause: function () {
+				// A media error can be followed immediately by a pause event.
+				// Do not mistake that pause for the user's explicit pause.
+				if (!state.reloading && (!state.lastErrorAt || Date.now() - state.lastErrorAt > 1000)) {
+					state.shouldResume = false;
+					state.stalledAt = 0;
+					state.attempts = 0;
+					stopMonitoring();
+				}
+			},
+			ended: function () {
+				state.shouldResume = false;
+				state.stalledAt = 0;
+				stopMonitoring();
+			}
+		};
 
-        for (var eventName in state.handlers) {
-            video.addEventListener(eventName, state.handlers[eventName]);
-        }
-    }
+		for (var eventName in state.handlers) {
+			video.addEventListener(eventName, state.handlers[eventName]);
+		}
+	}
 
-    function queueVideoAttachment() {
-        if (!state.active || state.attachTimer) return;
+	function queueVideoAttachment () {
+		if (!state.active || state.attachTimer) return;
 
-        state.attachTimer = setTimeout(function () {
-            state.attachTimer = null;
-            attachVideo(getVideo());
-        }, 50);
-    }
+		state.attachTimer = setTimeout(function () {
+			state.attachTimer = null;
+			attachVideo(getVideo());
+		}, 50);
+	}
 
-    attachVideo(getVideo());
+	attachVideo(getVideo());
 
-    state.onlineHandler = function () {
-        if (!state.active || !state.shouldResume) return;
+	state.onlineHandler = function () {
+		if (!state.active || !state.shouldResume) return;
 
-        state.nextAttemptAt = 0;
-        scheduleMonitor(250);
-    };
-    window.addEventListener('online', state.onlineHandler);
+		state.nextAttemptAt = 0;
+		scheduleMonitor(250);
+	};
+	window.addEventListener('online', state.onlineHandler);
 
-    state.observer = new MutationObserver(queueVideoAttachment);
-    state.observer.observe(document.documentElement, {
-        childList: true,
-        subtree: true
-    });
+	state.observer = new MutationObserver(queueVideoAttachment);
+	state.observer.observe(document.documentElement, {
+		childList: true,
+		subtree: true
+	});
 };

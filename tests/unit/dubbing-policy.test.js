@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
-function loadDubbingPolicy(context) {
+function loadDubbingPolicy (context) {
 	const source = fs.readFileSync(
 		path.join(__dirname, '../../js&css/web-accessible/www.youtube.com/player.js'),
 		'utf8'
@@ -18,17 +18,17 @@ function loadDubbingPolicy(context) {
 	vm.runInContext(source.slice(start, end), context);
 }
 
-function audioTrack({id, languageCode, name, isAutoDubbed = false, isDefault = false}) {
+function audioTrack ({id, languageCode, name, isAutoDubbed = false, isDefault = false}) {
 	return {
 		id,
 		isAutoDubbed,
-		getLanguageInfo() {
+		getLanguageInfo () {
 			return {id, languageCode, name, isDefault};
 		}
 	};
 }
 
-function createContext(tracks) {
+function createContext (tracks) {
 	let selectedTrack = tracks[0];
 	let setAudioTrackCalls = 0;
 	const player = {
@@ -56,15 +56,15 @@ function createContext(tracks) {
 		},
 		location: {href: 'https://www.youtube.com/watch?v=test-video'},
 		MutationObserver: class {
-			constructor(callback) {
+			constructor (callback) {
 				this.callback = callback;
 			}
 
-			disconnect() {
+			disconnect () {
 				this.disconnected = true;
 			}
 
-			observe(target, options) {
+			observe (target, options) {
 				this.target = target;
 				this.options = options;
 			}
@@ -208,13 +208,13 @@ describe('dubbing policy', () => {
 				display: '',
 				getPropertyPriority: property => priorities[property] || '',
 				getPropertyValue: property => values[property] || '',
-				removeProperty(property) {
+				removeProperty (property) {
 					delete values[property];
 					delete priorities[property];
 					if (property === 'display') this.display = '';
 					if (property === 'width') this.width = '';
 				},
-				setProperty(property, value, priority = '') {
+				setProperty (property, value, priority = '') {
 					values[property] = value;
 					priorities[property] = priority;
 					if (property === 'display') this.display = value;
@@ -394,11 +394,11 @@ describe('dubbing policy', () => {
 			return {
 				getPropertyPriority: property => priorities[property] || '',
 				getPropertyValue: property => values[property] || '',
-				removeProperty(property) {
+				removeProperty (property) {
 					delete values[property];
 					delete priorities[property];
 				},
-				setProperty(property, value, priority = '') {
+				setProperty (property, value, priority = '') {
 					values[property] = value;
 					priorities[property] = priority;
 				}
@@ -479,11 +479,11 @@ describe('dubbing policy', () => {
 			return {
 				getPropertyPriority: property => priorities[property] || '',
 				getPropertyValue: property => values[property] || '',
-				removeProperty(property) {
+				removeProperty (property) {
 					delete values[property];
 					delete priorities[property];
 				},
-				setProperty(property, value, priority = '') {
+				setProperty (property, value, priority = '') {
 					values[property] = value;
 					priorities[property] = priority;
 				}
@@ -494,7 +494,7 @@ describe('dubbing policy', () => {
 		let menuPanelScrollTop = 120;
 		let menuPanelIsOutgoing = false;
 		const menuPanel = {
-			addEventListener(type, listener, capture) {
+			addEventListener (type, listener, capture) {
 				this.backListener = {capture, listener, type};
 			},
 			classList: {contains: value => menuPanelIsOutgoing && value === 'ytp-panel-animate-back'},
@@ -503,10 +503,10 @@ describe('dubbing policy', () => {
 			style: menuPanelStyle
 		};
 		Object.defineProperty(menuPanel, 'scrollTop', {
-			get() {
+			get () {
 				return menuPanelScrollTop;
 			},
-			set(value) {
+			set (value) {
 				// Model overflow: clip: it is not a scroll container, so the stale
 				// offset must be cleared before clip is applied.
 				if (menuPanelStyle.getPropertyValue('overflow') !== 'clip') menuPanelScrollTop = value;
@@ -526,12 +526,12 @@ describe('dubbing policy', () => {
 			getBoundingClientRect: () => ({height: 176, width: 228}),
 			querySelector: selector => selector === '.ytp-panel' ? probePanel : probeMenu,
 			querySelectorAll: () => [],
-			remove() {
+			remove () {
 				this.removed = true;
 			}
 		};
 		const popup = {
-			addEventListener(type, listener, capture) {
+			addEventListener (type, listener, capture) {
 				this.focusListener = {capture, listener, type};
 			},
 			dataset: {},

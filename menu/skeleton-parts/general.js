@@ -319,7 +319,7 @@ extension.skeleton.main.layers.section.general = {
 					}],
 					tags: 'preview quality',
 					on: {
-						render: function() {
+						render: function () {
 							var lowResolution = window.screen.width * window.screen.height * Math.pow(window.devicePixelRatio || 1, 2) < 2073600,
 								value = satus.storage.get('thumbnails_quality');
 							this.style.display = lowResolution ? 'none' : '';
@@ -329,7 +329,7 @@ extension.skeleton.main.layers.section.general = {
 							} else {
 								var	previous = satus.storage.get('thumbnails_quality_previous');
 								if (!lowResolution && (!value || value === 'null') && previous) {
-								satus.storage.set('thumbnails_quality', previous);
+									satus.storage.set('thumbnails_quality', previous);
 								}
 							}
 						}

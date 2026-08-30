@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
-function extractAutoVideoRecovery() {
+function extractAutoVideoRecovery () {
 	const source = fs.readFileSync(
 		path.join(__dirname, '../../js&css/extension/www.youtube.com/general/general.js'),
 		'utf8'
@@ -26,19 +26,19 @@ function extractAutoVideoRecovery() {
 }
 
 class FakeEventTarget {
-	constructor() {
+	constructor () {
 		this.listeners = {};
 	}
 
-	addEventListener(type, listener) {
+	addEventListener (type, listener) {
 		(this.listeners[type] ||= []).push(listener);
 	}
 
-	removeEventListener(type, listener) {
+	removeEventListener (type, listener) {
 		this.listeners[type] = (this.listeners[type] || []).filter(item => item !== listener);
 	}
 
-	emit(type) {
+	emit (type) {
 		for (const listener of [...(this.listeners[type] || [])]) {
 			listener();
 		}
@@ -46,7 +46,7 @@ class FakeEventTarget {
 }
 
 class FakeVideo extends FakeEventTarget {
-	constructor() {
+	constructor () {
 		super();
 		this.currentTime = 42;
 		this.duration = 200;
@@ -57,11 +57,11 @@ class FakeVideo extends FakeEventTarget {
 		this.throwOnPlay = false;
 	}
 
-	load() {
+	load () {
 		this.loadCalls++;
 	}
 
-	play() {
+	play () {
 		this.paused = false;
 		this.playCalls++;
 		if (this.throwOnPlay) throw new Error('temporary playback failure');
@@ -90,13 +90,13 @@ describe('auto video recovery', () => {
 		const documentTarget = new FakeEventTarget();
 		const windowTarget = new FakeEventTarget();
 
-		function setTimer(callback, delay) {
+		function setTimer (callback, delay) {
 			const id = nextTimerId++;
 			timers.set(id, {callback, at: now + delay});
 			return id;
 		}
 
-		function advance(ms) {
+		function advance (ms) {
 			now += ms;
 			let next;
 
@@ -109,12 +109,12 @@ describe('auto video recovery', () => {
 		}
 
 		class FakeMutationObserver {
-			constructor(callback) {
+			constructor (callback) {
 				this.callback = callback;
 			}
 
-			disconnect() {}
-			observe() {}
+			disconnect () {}
+			observe () {}
 		}
 
 		const context = {

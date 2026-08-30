@@ -100,7 +100,7 @@ CODEC || 30FPS
 	file to patch HTMLMediaElement before YT player uses it.
 --------------------------------------------------------------*/
 if (localStorage['it-codec'] || localStorage['it-player30fps']) {
-	function overwrite(self, callback, mime) {
+	function overwrite (self, callback, mime) {
 		if (localStorage['it-codec']) {
 			var re = new RegExp(localStorage['it-codec']);
 			// /webm|vp8|vp9|av01/
@@ -379,7 +379,6 @@ document.addEventListener('it-message-from-extension', function () {
 					}
 					break
 
-
 				case 'shortcutActivateFitToWindow':
 					if (ImprovedTube.storage.shortcut_activate_fit_to_window && ImprovedTube.storage.player_fit_to_win_button === false) {
 						// Activate the player_fit_to_win_button if the user has set a shortcut
@@ -539,10 +538,12 @@ document.addEventListener('it-message-from-extension', function () {
 						ImprovedTube.selectDubbedLanguage();
 					}
 					break
-				case  'smartSpeed':
-                    if (ImprovedTube.storage.smart_speed === true) { if(ImprovedTube.heatmap) {ImprovedTube.heatmap.init(); };
-                    } else if (ImprovedTube.storage.smart_speed === false) { if(ImprovedTube.heatmap) { ImprovedTube.heatmap.isEnabled = false; document.querySelector("video").playbackRate = 1.0; }
-                    }
+				case 'smartSpeed':
+					if (ImprovedTube.storage.smart_speed === true) {
+						if (ImprovedTube.heatmap) {ImprovedTube.heatmap.init(); };
+					} else if (ImprovedTube.storage.smart_speed === false) {
+						if (ImprovedTube.heatmap) { ImprovedTube.heatmap.isEnabled = false; document.querySelector("video").playbackRate = 1.0; }
+					}
 					break
 				case 'returnYoutubeDislike':
 					if (ImprovedTube.storage.return_youtube_dislike === true) {
