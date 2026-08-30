@@ -3,6 +3,14 @@ LAST WATCHED OVERLAY ON THUMBNAILS (ROBUSTE VERSION)
 ------------------------------------------------------------------------------*/
 ImprovedTube.lastWatchedOverlay = function () {
 	if (ImprovedTube.storage.show_last_watched_overlay === true) {
+		// Re-entry guard: this function is also reached from a listener it registers itself,
+		// so without it every navigation installs another observer, interval and listener set.
+		// lastWatchedOverlayProcess is assigned exactly once, on a successful setup.
+		if (ImprovedTube.lastWatchedOverlayProcess) {
+			ImprovedTube.lastWatchedOverlayProcess();
+			return true;
+		}
+
 		console.log("[LWO] Feature function called");
 
 		(function addStyles () {
@@ -278,17 +286,10 @@ ImprovedTube.lastWatchedOverlay = function () {
 			setTimeout(processPage, 400);
 		});
 
-		// Regelmäßige Überprüfung für dynamisch geladene Inhalte
-		setInterval(processPage, 5000);
-
-		// "AI hallucination"  // WICHTIG: Entferne alle alten Versionen oder Stubs   if (ImprovedTube.appearance && ImprovedTube.appearance.lastWatchedOverlay) {    delete ImprovedTube.appearance.lastWatchedOverlay; }
+		// No polling timer here: the observer above watches the same selectors processPage
+		// collects, and yt-navigate-finish / yt-page-data-updated cover the SPA transitions.
 		document.addEventListener('yt-page-data-updated', () => {
-			setTimeout(() => {
-				ImprovedTube.lastWatchedOverlay();
-				if (ImprovedTube.lastWatchedOverlayProcess) {
-					ImprovedTube.lastWatchedOverlayProcess();
-				}
-			}, 800);
+			setTimeout(processPage, 800);
 		});
 
 		return true; // Erfolgreiche Initialisierung
