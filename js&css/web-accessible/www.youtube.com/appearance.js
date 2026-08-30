@@ -1048,7 +1048,7 @@ if (ImprovedTube.storage.disable_likes_animation === true) {
 				el.replaceWith(span);
 			}
 		});
-	}
+	};
 	// Call this on page load and on navigation
 	(function () {
 		var run = function () { ImprovedTube.disableLikesAnimation && ImprovedTube.disableLikesAnimation(); };

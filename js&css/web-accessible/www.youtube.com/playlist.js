@@ -287,8 +287,8 @@ ImprovedTube.playlistPopupCreateButton = function (playlistID, altButtonStyle, c
 		'click',
 		(checkVideo ?? false) ? function () {
 			const videoURL = ImprovedTube.elements.player?.getVideoUrl();
-			let width = ImprovedTube.elements.player.offsetWidth * 0.7 ?? innerWidth * 0.4;
-			let height = ImprovedTube.elements.player.offsetHeight * 0.7 ?? innerHeight * 0.4;
+			let width = ImprovedTube.elements.player ? ImprovedTube.elements.player.offsetWidth * 0.7 : innerWidth * 0.4;
+			let height = ImprovedTube.elements.player ? ImprovedTube.elements.player.offsetHeight * 0.7 : innerHeight * 0.4;
 
 			"use strict";
 			if (videoURL != null && ImprovedTube.regex.video_id.test(videoURL)) {
@@ -313,8 +313,8 @@ ImprovedTube.playlistPopupCreateButton = function (playlistID, altButtonStyle, c
 				title: document.title
 			});
 		} : function () {
-			let width = ImprovedTube.elements.player.offsetWidth * 0.7 ?? innerWidth * 0.45;
-			let height = ImprovedTube.elements.player.offsetHeight * 0.7 ?? innerHeight * 0.45;
+			let width = ImprovedTube.elements.player ? ImprovedTube.elements.player.offsetWidth * 0.7 : innerWidth * 0.45;
+			let height = ImprovedTube.elements.player ? ImprovedTube.elements.player.offsetHeight * 0.7 : innerHeight * 0.45;
 			if (!ImprovedTube.elements.player) {
 				shorts = /short/.test(this.parentElement.href);
 				if ( width / height < 1 ) { vertical = true } else { vertical = false }

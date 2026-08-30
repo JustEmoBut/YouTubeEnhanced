@@ -325,6 +325,7 @@ document.addEventListener('it-message-from-extension', function () {
 							ImprovedTube.elements.buttons['it-cinema-mode-styles']?.remove();
 						}
 					}
+					break
 
 				case 'playerRepeatButton':
 					if (ImprovedTube.storage.player_repeat_button === false) {

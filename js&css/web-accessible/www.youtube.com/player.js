@@ -3031,17 +3031,16 @@ ImprovedTube.jumpToKeyScene = function () {
 		console.log(`Jumped to Most Replayed @ ${Math.floor(targetSeconds / 60)}:${Math.floor(targetSeconds % 60).toString().padStart(2, "0")}`);
 
 		function extractYtInitialData () {
+			if (DATA.ytInitialData) { return DATA.ytInitialData; }
+
 			const scriptTags = document.querySelectorAll('script');
 
 			for (let i = 0; i < scriptTags.length; i++) {
-				if (DATA.ytInitialData) { var ytIData = DATA.ytInitialData; } else {
-					const scriptContent = scriptTags[i].textContent;
-					var ytIData = scriptContent.match(/var ytInitialData = ({.*?});/s);
-				}
+				const match = scriptTags[i].textContent.match(/var ytInitialData = ({.*?});/s);
 
-				if (ytIData) {
+				if (match) {
 					try {
-						return JSON.parse(ytIData[1]);
+						return JSON.parse(match[1]);
 					} catch (e) {
 						console.warn("Failed to parse ytInitialData JSON", e);
 						return null;

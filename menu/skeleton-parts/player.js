@@ -844,7 +844,6 @@ extension.skeleton.main.layers.section.player.on.click = {
 							text: 'green',
 							value: '#0f0'
 						}, {
-							value: 'cyan',
 							text: 'cyan',
 							value: '#0ff'
 						}, {
@@ -900,7 +899,6 @@ extension.skeleton.main.layers.section.player.on.click = {
 							text: 'green',
 							value: '#0f0'
 						}, {
-							value: 'cyan',
 							text: 'cyan',
 							value: '#0ff'
 						}, {

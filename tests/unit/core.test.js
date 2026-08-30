@@ -1,11 +1,6 @@
 // Mock extension object directly within the jest.mock call
 jest.mock('../../js&css/extension/core', () => ({
 	domReady: false,
-	events: {
-		listeners: {},
-		on: jest.fn(),
-		trigger: jest.fn(),
-	},
 	features: {},
 	functions: {},
 	messages: {
