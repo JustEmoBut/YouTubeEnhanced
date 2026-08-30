@@ -2174,21 +2174,25 @@ html .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--filled {
 }
 
 /* Dark Mode + Fullscreen */
+html[dark] ytd-watch-flexy[fullscreen] .ytSpecButtonShapeNextIcon ytd-lottie-player svg path[fill-opacity="1"],
 html[dark] ytd-watch-flexy[fullscreen] .yt-spec-button-shape-next__icon ytd-lottie-player svg path[fill-opacity="1"] {
     fill: var(--yt-spec-text-primary);
 }
 
 /* Light Mode + Fullscreen */
+html:not([dark])[it-theme="default"] ytd-watch-flexy[fullscreen] .ytSpecButtonShapeNextIcon ytd-lottie-player svg path[fill-opacity="1"],
 html:not([dark])[it-theme="default"] ytd-watch-flexy[fullscreen] .yt-spec-button-shape-next__icon ytd-lottie-player svg path[fill-opacity="1"] {
     fill: var(--yt-spec-text-primary-inverse);
 }
 
 /* Like button splash effect light mode */
+html:not([dark])[it-theme="default"] .ytSpecButtonShapeNextIcon ytd-lottie-player svg path[fill-opacity="0"],
 html:not([dark])[it-theme="default"] .yt-spec-button-shape-next__icon ytd-lottie-player svg path[fill-opacity="0"] {
 	stroke: var(--yt-spec-text-primary-inverse);
 }
 
 /* Like button splash effect dark mode */
+html[dark] .ytSpecButtonShapeNextIcon ytd-lottie-player svg path[fill-opacity="0"],
 html[dark] .yt-spec-button-shape-next__icon ytd-lottie-player svg path[fill-opacity="0"] {
 	stroke: var(--yt-spec-text-primary);
 }

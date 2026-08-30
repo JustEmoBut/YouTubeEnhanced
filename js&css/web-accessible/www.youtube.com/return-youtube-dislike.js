@@ -136,10 +136,10 @@ ImprovedTube.rydDisplayCount = function (data) {
 	if (isShorts) {
 		button.parentElement?.appendChild(countEl);
 	} else {
-		let container = button.querySelector('.yt-spec-button-shape-next__button-text-content');
+		let container = button.querySelector('.ytSpecButtonShapeNextButtonTextContent, .yt-spec-button-shape-next__button-text-content');
 		if (!container) {
 			container = document.createElement('span');
-			container.className = 'yt-spec-button-shape-next__button-text-content';
+			container.className = 'ytSpecButtonShapeNextButtonTextContent yt-spec-button-shape-next__button-text-content';
 			button.appendChild(container);
 		}
 		container.textContent = '';

@@ -19,11 +19,15 @@ describe('Join Button Hiding (#3669)', () => {
 		expect(detailsCssContent).toContain("html[it-join='hidden'] ytd-sponsorships-offer-module-renderer");
 	});
 
+	// YouTube renamed its button-shape classes from BEM to camelCase; both spellings
+	// have to stay in the sheet while the old markup is still served to some users.
 	test('should remove label from legacy #sponsor-button', () => {
+		expect(detailsCssContent).toContain("html[it-join='remove_label'] #sponsor-button button .ytSpecButtonShapeNextButtonTextContent");
 		expect(detailsCssContent).toContain("html[it-join='remove_label'] #sponsor-button button .yt-spec-button-shape-next__button-text-content");
 	});
 
 	test('should remove label from new sponsorships renderer', () => {
+		expect(detailsCssContent).toContain("html[it-join='remove_label'] ytd-sponsorships-offer-module-renderer button .ytSpecButtonShapeNextButtonTextContent");
 		expect(detailsCssContent).toContain("html[it-join='remove_label'] ytd-sponsorships-offer-module-renderer button .yt-spec-button-shape-next__button-text-content");
 	});
 });

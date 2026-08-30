@@ -39,7 +39,9 @@ html[it-return-youtube-dislike="true"] ytd-segmented-like-dislike-button-rendere
     width: auto !important;
 }
 
+html[it-return-youtube-dislike="true"] segmented-like-dislike-button-view-model dislike-button-view-model .ytSpecButtonShapeNextButtonTextContent,
 html[it-return-youtube-dislike="true"] segmented-like-dislike-button-view-model dislike-button-view-model .yt-spec-button-shape-next__button-text-content,
+html[it-return-youtube-dislike="true"] ytd-segmented-like-dislike-button-renderer #segmented-dislike-button .ytSpecButtonShapeNextButtonTextContent,
 html[it-return-youtube-dislike="true"] ytd-segmented-like-dislike-button-renderer #segmented-dislike-button .yt-spec-button-shape-next__button-text-content {
     display: inline-flex !important;
     align-items: center !important;
