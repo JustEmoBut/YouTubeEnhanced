@@ -161,8 +161,8 @@ html[data-theme='black'][it-comments='collapsed'][data-page-type=video] ytd-comm
 
 
 	/* DIFFERENT HEADERS HEIGHT */
-	html[data-page-type=video][it-comments-sidebar='true'][it-header-position=normal] ytd-watch-flexy:not([theater]):not([fullscreen]) #columns, /* BUG: if header has never been changed back and forth to normal, [it-header-position=normal] selector isn't applied */
-	html[data-page-type=video][it-comments-sidebar='true']:not([it-header-position^=h]) ytd-watch-flexy:not([theater]):not([fullscreen]) #columns, /* temporary fix */
+	/* Covers normal, static and "never set" alike: an it-* attribute only exists once its setting has been written to storage, so [it-header-position=normal] never matches a default profile. */
+	html[data-page-type=video][it-comments-sidebar='true']:not([it-header-position^=h]) ytd-watch-flexy:not([theater]):not([fullscreen]) #columns,
 	html[data-page-type=video][it-comments-sidebar='true'][it-header-position=static] #columns {
 		height: calc(100vh - 56px);
 	}
