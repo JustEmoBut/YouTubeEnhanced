@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
-	"short_name": "ImprovedTube",
-	"name": "'Improve YouTube!' 🎧 (for YouTube & Videos)",
+	"short_name": "YTEnhanced",
+	"name": "YouTube Enhanced",
 	"description": "__MSG_description_ext__",
 	"version": "4.1077",
 	"default_locale": "en",
