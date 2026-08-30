@@ -474,331 +474,331 @@ extension.skeleton.main.layers.section.player.on.click = {
 							text: 'default_CC'
 						}, {
 							value: 'af',
-							text: 'Afrikaans'
+							text: 'language:af'
 						}, {
 							value: 'sq',
-							text: 'Albanian'
+							text: 'language:sq'
 						}, {
 							value: 'am',
-							text: 'Amharic'
+							text: 'language:am'
 						}, {
 							value: 'ar',
-							text: 'Arabic'
+							text: 'language:ar'
 						}, {
 							value: 'hy',
-							text: 'Armenian'
+							text: 'language:hy'
 						}, {
 							value: 'az',
-							text: 'Azerbaijani'
+							text: 'language:az'
 						}, {
 							value: 'bn',
-							text: 'Bangla'
+							text: 'language:bn'
 						}, {
 							value: 'eu',
-							text: 'Basque'
+							text: 'language:eu'
 						}, {
 							value: 'be',
-							text: 'Belarusian'
+							text: 'language:be'
 						}, {
 							value: 'bs',
-							text: 'Bosnian'
+							text: 'language:bs'
 						}, {
 							value: 'bg',
-							text: 'Bulgarian'
+							text: 'language:bg'
 						}, {
 							value: 'my',
-							text: 'Burmese'
+							text: 'language:my'
 						}, {
 							value: 'ca',
-							text: 'Catalan'
+							text: 'language:ca'
 						}, {
 							value: 'ceb',
-							text: 'Cebuano'
+							text: 'language:ceb'
 						}, {
 							value: 'zh-Hans',
-							text: 'Chinese (Simplified)'
+							text: 'language:zh-Hans'
 						}, {
 							value: 'zh-Hant',
-							text: 'Chinese (Traditional)'
+							text: 'language:zh-Hant'
 						}, {
 							value: 'co',
-							text: 'Corsican'
+							text: 'language:co'
 						}, {
 							value: 'hr',
-							text: 'Croatian'
+							text: 'language:hr'
 						}, {
 							value: 'cs',
-							text: 'Czech'
+							text: 'language:cs'
 						}, {
 							value: 'da',
-							text: 'Danish'
+							text: 'language:da'
 						}, {
 							value: 'nl',
-							text: 'Dutch'
+							text: 'language:nl'
 						}, {
 							value: 'en',
-							text: 'English'
+							text: 'language:en'
 						}, {
 							value: 'eo',
-							text: 'Esperanto'
+							text: 'language:eo'
 						}, {
 							value: 'et',
-							text: 'Estonian'
+							text: 'language:et'
 						}, {
 							value: 'fil',
-							text: 'Filipino'
+							text: 'language:fil'
 						}, {
 							value: 'fi',
-							text: 'Finnish'
+							text: 'language:fi'
 						}, {
 							value: 'fr',
-							text: 'French'
+							text: 'language:fr'
 						}, {
 							value: 'gl',
-							text: 'Galician'
+							text: 'language:gl'
 						}, {
 							value: 'ka',
-							text: 'Georgian'
+							text: 'language:ka'
 						}, {
 							value: 'de',
-							text: 'German'
+							text: 'language:de'
 						}, {
 							value: 'el',
-							text: 'Greek'
+							text: 'language:el'
 						}, {
 							value: 'gu',
-							text: 'Gujarati'
+							text: 'language:gu'
 						}, {
 							value: 'ht',
-							text: 'Haitian Creole'
+							text: 'language:ht'
 						}, {
 							value: 'ha',
-							text: 'Hausa'
+							text: 'language:ha'
 						}, {
 							value: 'haw',
-							text: 'Hawaiian'
+							text: 'language:haw'
 						}, {
 							value: 'iw',
-							text: 'Hebrew'
+							text: 'language:iw'
 						}, {
 							value: 'hi',
-							text: 'Hindi'
+							text: 'language:hi'
 						}, {
 							value: 'hmn',
-							text: 'Hmong'
+							text: 'language:hmn'
 						}, {
 							value: 'hu',
-							text: 'Hungarian'
+							text: 'language:hu'
 						}, {
 							value: 'is',
-							text: 'Icelandic'
+							text: 'language:is'
 						}, {
 							value: 'ig',
-							text: 'Igbo'
+							text: 'language:ig'
 						}, {
 							value: 'id',
-							text: 'Indonesian'
+							text: 'language:id'
 						}, {
 							value: 'ga',
-							text: 'Irish'
+							text: 'language:ga'
 						}, {
 							value: 'it',
-							text: 'Italian'
+							text: 'language:it'
 						}, {
 							value: 'ja',
-							text: 'Japanese'
+							text: 'language:ja'
 						}, {
 							value: 'jv',
-							text: 'Javanese'
+							text: 'language:jv'
 						}, {
 							value: 'kn',
-							text: 'Kannada'
+							text: 'language:kn'
 						}, {
 							value: 'kk',
-							text: 'Kazakh'
+							text: 'language:kk'
 						}, {
 							value: 'km',
-							text: 'Khmer'
+							text: 'language:km'
 						}, {
 							value: 'rw',
-							text: 'Kinyarwanda'
+							text: 'language:rw'
 						}, {
 							value: 'ko',
-							text: 'Korean'
+							text: 'language:ko'
 						}, {
 							value: 'ku',
-							text: 'Kurdish'
+							text: 'language:ku'
 						}, {
 							value: 'ky',
-							text: 'Kyrgyz'
+							text: 'language:ky'
 						}, {
 							value: 'lo',
-							text: 'Lao'
+							text: 'language:lo'
 						}, {
 							value: 'la',
-							text: 'Latin'
+							text: 'language:la'
 						}, {
 							value: 'lv',
-							text: 'Latvian'
+							text: 'language:lv'
 						}, {
 							value: 'lt',
-							text: 'Lithuanian'
+							text: 'language:lt'
 						}, {
 							value: 'lb',
-							text: 'Luxembourgish'
+							text: 'language:lb'
 						}, {
 							value: 'mk',
-							text: 'Macedonian'
+							text: 'language:mk'
 						}, {
 							value: 'mg',
-							text: 'Malagasy'
+							text: 'language:mg'
 						}, {
 							value: 'ms',
-							text: 'Malay'
+							text: 'language:ms'
 						}, {
 							value: 'ml',
-							text: 'Malayalam'
+							text: 'language:ml'
 						}, {
 							value: 'mt',
-							text: 'Maltese'
+							text: 'language:mt'
 						}, {
 							value: 'mi',
-							text: 'Maori'
+							text: 'language:mi'
 						}, {
 							value: 'mr',
-							text: 'Marathi'
+							text: 'language:mr'
 						}, {
 							value: 'mn',
-							text: 'Mongolian'
+							text: 'language:mn'
 						}, {
 							value: 'ne',
-							text: 'Nepali'
+							text: 'language:ne'
 						}, {
 							value: 'no',
-							text: 'Norwegian'
+							text: 'language:no'
 						}, {
 							value: 'ny',
-							text: 'Nyanja'
+							text: 'language:ny'
 						}, {
 							value: 'or',
-							text: 'Odia'
+							text: 'language:or'
 						}, {
 							value: 'ps',
-							text: 'Pashto'
+							text: 'language:ps'
 						}, {
 							value: 'fa',
-							text: 'Persian'
+							text: 'language:fa'
 						}, {
 							value: 'pl',
-							text: 'Polish'
+							text: 'language:pl'
 						}, {
 							value: 'pt',
-							text: 'Portuguese'
+							text: 'language:pt'
 						}, {
 							value: 'pa',
-							text: 'Punjabi'
+							text: 'language:pa'
 						}, {
 							value: 'ro',
-							text: 'Romanian'
+							text: 'language:ro'
 						}, {
 							value: 'ru',
-							text: 'Russian'
+							text: 'language:ru'
 						}, {
 							value: 'sm',
-							text: 'Samoan'
+							text: 'language:sm'
 						}, {
 							value: 'gd',
-							text: 'Scottish Gaelic'
+							text: 'language:gd'
 						}, {
 							value: 'sr',
-							text: 'Serbian'
+							text: 'language:sr'
 						}, {
 							value: 'sn',
-							text: 'Shona'
+							text: 'language:sn'
 						}, {
 							value: 'sd',
-							text: 'Sindhi'
+							text: 'language:sd'
 						}, {
 							value: 'si',
-							text: 'Sinhala'
+							text: 'language:si'
 						}, {
 							value: 'sk',
-							text: 'Slovak'
+							text: 'language:sk'
 						}, {
 							value: 'sl',
-							text: 'Slovenian'
+							text: 'language:sl'
 						}, {
 							value: 'so',
-							text: 'Somali'
+							text: 'language:so'
 						}, {
 							value: 'st',
-							text: 'Southern Sotho'
+							text: 'language:st'
 						}, {
 							value: 'es',
-							text: 'Spanish'
+							text: 'language:es'
 						}, {
 							value: 'su',
-							text: 'Sundanese'
+							text: 'language:su'
 						}, {
 							value: 'sw',
-							text: 'Swahili'
+							text: 'language:sw'
 						}, {
 							value: 'sv',
-							text: 'Swedish'
+							text: 'language:sv'
 						}, {
 							value: 'tg',
-							text: 'Tajik'
+							text: 'language:tg'
 						}, {
 							value: 'ta',
-							text: 'Tamil'
+							text: 'language:ta'
 						}, {
 							value: 'tt',
-							text: 'Tatar'
+							text: 'language:tt'
 						}, {
 							value: 'te',
-							text: 'Telugu'
+							text: 'language:te'
 						}, {
 							value: 'th',
-							text: 'Thai'
+							text: 'language:th'
 						}, {
 							value: 'tr',
-							text: 'Turkish'
+							text: 'language:tr'
 						}, {
 							value: 'tk',
-							text: 'Turkmen'
+							text: 'language:tk'
 						}, {
 							value: 'uk',
-							text: 'Ukrainian'
+							text: 'language:uk'
 						}, {
 							value: 'ur',
-							text: 'Urdu'
+							text: 'language:ur'
 						}, {
 							value: 'ug',
-							text: 'Uyghur'
+							text: 'language:ug'
 						}, {
 							value: 'uz',
-							text: 'Uzbek'
+							text: 'language:uz'
 						}, {
 							value: 'vi',
-							text: 'Vietnamese'
+							text: 'language:vi'
 						}, {
 							value: 'cy',
-							text: 'Welsh'
+							text: 'language:cy'
 						}, {
 							value: 'fy',
-							text: 'Western Frisian'
+							text: 'language:fy'
 						}, {
 							value: 'xh',
-							text: 'Xhosa'
+							text: 'language:xh'
 						}, {
 							value: 'yi',
-							text: 'Yiddish'
+							text: 'language:yi'
 						}, {
 							value: 'yo',
-							text: 'Yoruba'
+							text: 'language:yo'
 						}, {
 							value: 'zu',
-							text: 'Zulu'
+							text: 'language:zu'
 						}]
 					},
 					auto_generate: {
@@ -994,256 +994,256 @@ extension.skeleton.main.layers.section.player.on.click = {
 				text: 'disabled'
 			}, {
 				value: 'af',
-				text: 'Afrikaans'
+				text: 'language:af'
 			}, {
 				value: 'sq',
-				text: 'Albanian'
+				text: 'language:sq'
 			}, {
 				value: 'am',
-				text: 'Amharic'
+				text: 'language:am'
 			}, {
 				value: 'ar',
-				text: 'Arabic'
+				text: 'language:ar'
 			}, {
 				value: 'hy',
-				text: 'Armenian'
+				text: 'language:hy'
 			}, {
 				value: 'az',
-				text: 'Azerbaijani'
+				text: 'language:az'
 			}, {
 				value: 'bn',
-				text: 'Bangla'
+				text: 'language:bn'
 			}, {
 				value: 'eu',
-				text: 'Basque'
+				text: 'language:eu'
 			}, {
 				value: 'be',
-				text: 'Belarusian'
+				text: 'language:be'
 			}, {
 				value: 'bs',
-				text: 'Bosnian'
+				text: 'language:bs'
 			}, {
 				value: 'bg',
-				text: 'Bulgarian'
+				text: 'language:bg'
 			}, {
 				value: 'my',
-				text: 'Burmese'
+				text: 'language:my'
 			}, {
 				value: 'ca',
-				text: 'Catalan'
+				text: 'language:ca'
 			}, {
 				value: 'zh-Hans',
-				text: 'Chinese (Simplified)'
+				text: 'language:zh-Hans'
 			}, {
 				value: 'zh-Hant',
-				text: 'Chinese (Traditional)'
+				text: 'language:zh-Hant'
 			}, {
 				value: 'hr',
-				text: 'Croatian'
+				text: 'language:hr'
 			}, {
 				value: 'cs',
-				text: 'Czech'
+				text: 'language:cs'
 			}, {
 				value: 'da',
-				text: 'Danish'
+				text: 'language:da'
 			}, {
 				value: 'nl',
-				text: 'Dutch'
+				text: 'language:nl'
 			}, {
 				value: 'en',
-				text: 'English'
+				text: 'language:en'
 			}, {
 				value: 'et',
-				text: 'Estonian'
+				text: 'language:et'
 			}, {
 				value: 'fil',
-				text: 'Filipino'
+				text: 'language:fil'
 			}, {
 				value: 'fi',
-				text: 'Finnish'
+				text: 'language:fi'
 			}, {
 				value: 'fr',
-				text: 'French'
+				text: 'language:fr'
 			}, {
 				value: 'gl',
-				text: 'Galician'
+				text: 'language:gl'
 			}, {
 				value: 'ka',
-				text: 'Georgian'
+				text: 'language:ka'
 			}, {
 				value: 'de',
-				text: 'German'
+				text: 'language:de'
 			}, {
 				value: 'el',
-				text: 'Greek'
+				text: 'language:el'
 			}, {
 				value: 'gu',
-				text: 'Gujarati'
+				text: 'language:gu'
 			}, {
 				value: 'iw',
-				text: 'Hebrew'
+				text: 'language:iw'
 			}, {
 				value: 'hi',
-				text: 'Hindi'
+				text: 'language:hi'
 			}, {
 				value: 'hu',
-				text: 'Hungarian'
+				text: 'language:hu'
 			}, {
 				value: 'is',
-				text: 'Icelandic'
+				text: 'language:is'
 			}, {
 				value: 'id',
-				text: 'Indonesian'
+				text: 'language:id'
 			}, {
 				value: 'ga',
-				text: 'Irish'
+				text: 'language:ga'
 			}, {
 				value: 'it',
-				text: 'Italian'
+				text: 'language:it'
 			}, {
 				value: 'ja',
-				text: 'Japanese'
+				text: 'language:ja'
 			}, {
 				value: 'kn',
-				text: 'Kannada'
+				text: 'language:kn'
 			}, {
 				value: 'kk',
-				text: 'Kazakh'
+				text: 'language:kk'
 			}, {
 				value: 'km',
-				text: 'Khmer'
+				text: 'language:km'
 			}, {
 				value: 'ko',
-				text: 'Korean'
+				text: 'language:ko'
 			}, {
 				value: 'ky',
-				text: 'Kyrgyz'
+				text: 'language:ky'
 			}, {
 				value: 'lo',
-				text: 'Lao'
+				text: 'language:lo'
 			}, {
 				value: 'lv',
-				text: 'Latvian'
+				text: 'language:lv'
 			}, {
 				value: 'lt',
-				text: 'Lithuanian'
+				text: 'language:lt'
 			}, {
 				value: 'mk',
-				text: 'Macedonian'
+				text: 'language:mk'
 			}, {
 				value: 'ms',
-				text: 'Malay'
+				text: 'language:ms'
 			}, {
 				value: 'ml',
-				text: 'Malayalam'
+				text: 'language:ml'
 			}, {
 				value: 'mt',
-				text: 'Maltese'
+				text: 'language:mt'
 			}, {
 				value: 'mr',
-				text: 'Marathi'
+				text: 'language:mr'
 			}, {
 				value: 'mn',
-				text: 'Mongolian'
+				text: 'language:mn'
 			}, {
 				value: 'ne',
-				text: 'Nepali'
+				text: 'language:ne'
 			}, {
 				value: 'no',
-				text: 'Norwegian'
+				text: 'language:no'
 			}, {
 				value: 'fa',
-				text: 'Persian'
+				text: 'language:fa'
 			}, {
 				value: 'pl',
-				text: 'Polish'
+				text: 'language:pl'
 			}, {
 				value: 'pt',
-				text: 'Portuguese'
+				text: 'language:pt'
 			}, {
 				value: 'pa',
-				text: 'Punjabi'
+				text: 'language:pa'
 			}, {
 				value: 'ro',
-				text: 'Romanian'
+				text: 'language:ro'
 			}, {
 				value: 'ru',
-				text: 'Russian'
+				text: 'language:ru'
 			}, {
 				value: 'sr',
-				text: 'Serbian'
+				text: 'language:sr'
 			}, {
 				value: 'si',
-				text: 'Sinhala'
+				text: 'language:si'
 			}, {
 				value: 'sk',
-				text: 'Slovak'
+				text: 'language:sk'
 			}, {
 				value: 'sl',
-				text: 'Slovenian'
+				text: 'language:sl'
 			}, {
 				value: 'so',
-				text: 'Somali'
+				text: 'language:so'
 			}, {
 				value: 'es',
-				text: 'Spanish'
+				text: 'language:es'
 			}, {
 				value: 'sw',
-				text: 'Swahili'
+				text: 'language:sw'
 			}, {
 				value: 'sv',
-				text: 'Swedish'
+				text: 'language:sv'
 			}, {
 				value: 'tg',
-				text: 'Tajik'
+				text: 'language:tg'
 			}, {
 				value: 'ta',
-				text: 'Tamil'
+				text: 'language:ta'
 			}, {
 				value: 'tt',
-				text: 'Tatar'
+				text: 'language:tt'
 			}, {
 				value: 'te',
-				text: 'Telugu'
+				text: 'language:te'
 			}, {
 				value: 'th',
-				text: 'Thai'
+				text: 'language:th'
 			}, {
 				value: 'tr',
-				text: 'Turkish'
+				text: 'language:tr'
 			}, {
 				value: 'tk',
-				text: 'Turkmen'
+				text: 'language:tk'
 			}, {
 				value: 'uk',
-				text: 'Ukrainian'
+				text: 'language:uk'
 			}, {
 				value: 'ur',
-				text: 'Urdu'
+				text: 'language:ur'
 			}, {
 				value: 'ug',
-				text: 'Uyghur'
+				text: 'language:ug'
 			}, {
 				value: 'uz',
-				text: 'Uzbek'
+				text: 'language:uz'
 			}, {
 				value: 'vi',
-				text: 'Vietnamese'
+				text: 'language:vi'
 			}, {
 				value: 'cy',
-				text: 'Welsh'
+				text: 'language:cy'
 			}, {
 				value: 'xh',
-				text: 'Xhosa'
+				text: 'language:xh'
 			}, {
 				value: 'yi',
-				text: 'Yiddish'
+				text: 'language:yi'
 			}, {
 				value: 'yo',
-				text: 'Yoruba'
+				text: 'language:yo'
 			}, {
 				value: 'zu',
-				text: 'Zulu'
+				text: 'language:zu'
 			}]
 		},
 		player_quality: {

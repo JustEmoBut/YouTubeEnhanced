@@ -405,6 +405,9 @@
   "defaultChannelTab": {
     "message": "Default channel tab"
   },
+  "defaultDubbedLanguage": {
+    "message": "Default dubbed language"
+  },
   "defaultContentCountry": {
     "message": "Country (virtual travel)"
   },

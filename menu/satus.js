@@ -117,7 +117,9 @@ var satus = {
 		data: {}
 	},
 	locale: {
-		data: {}
+		code: '',
+		data: {},
+		displayNames: {}
 	},
 	storage: {
 		data: {},
@@ -1021,7 +1023,39 @@ satus.last = function (variable) {
 # GET
 --------------------------------------------------------------*/
 satus.locale.get = function (string) {
-	return this.data[string] || string;
+	if (this.data[string]) {
+		return this.data[string];
+	}
+
+	var prefixed = /^(region|language):(.+)$/.exec(string);
+
+	if (prefixed) {
+		return this.displayName(prefixed[1], prefixed[2]);
+	}
+
+	return string;
+};
+
+/*--------------------------------------------------------------
+# DISPLAY NAME
+--------------------------------------------------------------*/
+
+// Country and language labels come from the browser's own ICU data, so they
+// are correct in every menu language without a single translated string.
+satus.locale.displayName = function (type, code) {
+	var language = this.code || navigator.language || 'en';
+
+	try {
+		if (!this.displayNames[type + '/' + language]) {
+			this.displayNames[type + '/' + language] = new Intl.DisplayNames([language], {
+				type: type
+			});
+		}
+
+		return this.displayNames[type + '/' + language].of(code) || code;
+	} catch (e) {
+		return code;
+	}
 };
 /*--------------------------------------------------------------
 # IMPORT            								// old:  satus.locale.import(url, onload, onsuccess);
@@ -1048,6 +1082,9 @@ satus.locale.import = function (code, callback, path) {
 	}
 	if (code) {
 		let language = code.replace('-', '_');
+
+		satus.locale.code = language.replace('_', '-');
+
 		if (language.indexOf('_') !== -1) {
 			importLocale(language, () => importLocale(language.split('_')[0], () => importLocale('en', callback)));
 		} else {
@@ -3176,7 +3213,7 @@ satus.search = function (query, object, callback) {
 					// only pass buttons whose parents are variant: 'card' or special case 'appearance' (this one abuses variant tag for CSS)
 					&& (item.component != 'button' || item.parentObject?.variant == "card" || item.parentObject?.variant == "appearance")
 					// try to match query against localized description, fallback on component name
-					&& (satus.locale.data[item.text] ? satus.locale.data[item.text] : item.text).toLowerCase().includes(query)) {
+					&& satus.locale.get(item.text).toLowerCase().includes(query)) {
 					// plop matching results in array - this means we cant have two elements with same name in results
 					results[key] = Object.assign({}, item);
 				}
