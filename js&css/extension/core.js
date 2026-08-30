@@ -118,9 +118,27 @@ extension.events.trigger = async function (type, data) {
 --------------------------------------------------------------*/
 
 extension.inject = function (paths, callback) {
-	if (paths.length > 0) {
+	var remaining = paths.length;
+
+	if (remaining === 0) {
+		if (callback) {
+			callback();
+		}
+
+		return;
+	}
+
+	function done () {
+		remaining--;
+
+		if (remaining === 0 && callback) {
+			callback();
+		}
+	}
+
+	for (var i = 0, l = paths.length; i < l; i++) {
 		var element,
-			path = chrome.runtime.getURL(paths[0]);
+			path = chrome.runtime.getURL(paths[i]);
 
 		if (path.indexOf('.css') !== -1) {
 			element = document.createElement('link');
@@ -130,50 +148,20 @@ extension.inject = function (paths, callback) {
 		} else {
 			element = document.createElement('script');
 
+			// Dynamically inserted scripts are async by default, which would break the
+			// core.js -> ... -> init.js dependency chain. async = false keeps execution
+			// ordered while still letting the files download in parallel.
+			element.async = false;
 			element.src = path;
 		}
 
-		element.onload = function () {
-			paths.shift();
-
-			extension.inject(paths, callback);
-		};
+		// onerror too: a single missing file used to stall the chain forever.
+		element.onload = done;
+		element.onerror = done;
 
 		document.documentElement.appendChild(element);
-	} else if (callback) {
-		callback();
 	}
 };
-
-/*extension.inject = function (urls, callback) {
-	var threads = urls.length;
-
-	for (var i = 0, l = urls.length; i < l; i++) {
-		var element,
-			url = chrome.runtime.getURL(urls[i]);
-
-		if (url.indexOf('.css') !== -1) {
-			element = document.createElement('link');
-
-			element.rel = 'stylesheet';
-			element.href = url;
-		} else {
-			element = document.createElement('script');
-
-			element.src = url;
-		}
-
-		element.onload = function () {
-			threads--;
-
-			if (threads === 0) {
-				callback();
-			}
-		};
-
-		document.documentElement.appendChild(element);
-	}
-};*/
 
 /*--------------------------------------------------------------
 # MESSAGES
