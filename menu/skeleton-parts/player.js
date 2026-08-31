@@ -1568,11 +1568,6 @@ extension.skeleton.main.layers.section.player.on.click = {
 			style: {
 				justifyContent: 'space-between'
 			},
-			on: {
-				click: function () {
-					//put some code here
-				}
-			},
 			list: {
 				component: 'span',
 				id: 'optimize_codec_for_hardware_acceleration',
@@ -1581,24 +1576,72 @@ extension.skeleton.main.layers.section.player.on.click = {
 				},
 				on: {
 					render: function () {
-						// put some code here looking up GPU  capabilities and comparing to currrent codec selection
-						var codecs = (satus.storage.get('block_h264') ? '' : 'h.264 ') + (satus.storage.get('block_vp9') ? '' : 'vp9 ') + (satus.storage.get('block_av1') ? '' : 'av1');
+						// Asks the browser what it can actually decode in hardware instead of
+						// keeping a GPU database. decodingInfo() reports powerEfficient per
+						// codec, which is exactly the question this row asks.
+						var element = this,
+							// 1080p60 is the tier where software decoding starts to hurt.
+							probes = [
+								{name: 'h.264', block: 'block_h264', contentType: 'video/mp4; codecs="avc1.640028"'},
+								{name: 'vp9', block: 'block_vp9', contentType: 'video/webm; codecs="vp09.00.41.08"'},
+								{name: 'av1', block: 'block_av1', contentType: 'video/mp4; codecs="av01.0.08M.08"'}
+							].filter(function (probe) {
+								return !satus.storage.get(probe.block);
+							});
 
-						// eslint-disable-next-line no-constant-condition -- upstream placeholder: GPU capability lookup not implemented yet
-						if (1) { // todo
-							this.style = '';
-							this.textContent = satus.locale.get('Feature_not_yet_available');
-						// eslint-disable-next-line no-constant-condition -- upstream placeholder, see above
-						} else if (2) { // todo
-							this.style = '';
-							this.textContent = satus.locale.get('GPUnotindatabase');
-						} else if (codecs) {
-							this.style = 'color: green!important; font-weight: bold;';
-							this.textContent = satus.locale.get('Optimal');
-						} else {
-							this.style = 'color: red!important; font-weight: bold;';
-							this.textContent = satus.locale.get('Not_optimal');
+						if (!navigator.mediaCapabilities || typeof navigator.mediaCapabilities.decodingInfo !== 'function') {
+							element.style = '';
+							element.textContent = satus.locale.get('GPUnotindatabase');
+							return;
 						}
+
+						if (probes.length === 0) {
+							element.style = 'color: red!important; font-weight: bold;';
+							element.textContent = satus.locale.get('Not_optimal');
+							return;
+						}
+
+						// Blank until the probes resolve, which takes a few milliseconds.
+						element.style = '';
+						element.textContent = '';
+
+						Promise.all(probes.map(function (probe) {
+							return navigator.mediaCapabilities.decodingInfo({
+								type: 'media-source',
+								video: {
+									contentType: probe.contentType,
+									width: 1920,
+									height: 1080,
+									bitrate: 4000000,
+									framerate: 60
+								}
+							}).then(function (result) {
+								return result.supported && result.powerEfficient;
+							}).catch(function () {
+								return false;
+							});
+						})).then(function (results) {
+							// The player picks whatever it likes among the allowed codecs, so
+							// the selection is only safe when every allowed codec is efficient.
+							var efficient = probes.filter(function (probe, index) {
+								return results[index];
+							});
+
+							if (efficient.length === probes.length) {
+								element.style = 'color: green!important; font-weight: bold;';
+								element.textContent = satus.locale.get('Optimal');
+							} else if (efficient.length === 0) {
+								element.style = 'color: red!important; font-weight: bold;';
+								element.textContent = satus.locale.get('Not_optimal');
+							} else {
+								element.style = 'color: red!important; font-weight: bold;';
+								element.textContent = satus.locale.get('Not_optimal') + ': ' + probes.filter(function (probe, index) {
+									return !results[index];
+								}).map(function (probe) {
+									return probe.name;
+								}).join(' ');
+							}
+						});
 					}
 				}
 			}

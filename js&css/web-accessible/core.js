@@ -98,30 +98,124 @@ CODEC || 30FPS
 ----------------------------------------------------------------
 	Do not move, needs to be on top of first injected content
 	file to patch HTMLMediaElement before YT player uses it.
+
+	Measured against YouTube's current player (Chrome, 2026-08):
+	MediaSource.isTypeSupported is the only gate that decides the
+	codec family. It gets ~11 calls per video load, and they are
+	generic capability probes ("do you support vp09 level 5.1?"),
+	not one string per available format. canPlayType is never
+	called for MSE playback and mediaCapabilities.decodingInfo is
+	advisory - rejecting a config there does not change the served
+	format - so decodingInfo is patched only to keep it from
+	contradicting isTypeSupported. Both are kept as cheap
+	insurance for embeds and non-Chromium players.
+
+	The patch installs unconditionally and reads its state per
+	call, so toggling a codec applies on the next video without a
+	page reload.
 --------------------------------------------------------------*/
-if (localStorage['it-codec'] || localStorage['it-player30fps']) {
-	function overwrite (self, callback, mime) {
-		if (localStorage['it-codec']) {
-			var re = new RegExp(localStorage['it-codec']);
-			// /webm|vp8|vp9|av01/
-			if (re.test(mime)) return '';
+ImprovedTube.codecAtlas = {block_vp9: 'vp9|vp09', block_h264: 'avc1', block_av1: 'av01'};
+
+(function () {
+	var cachedSource = null,
+		cachedRegex = null;
+
+	// Compiles localStorage['it-codec'] once per distinct value instead of
+	// on every probe, while still picking up changes without a reload.
+	function blockedCodecs () {
+		var source = localStorage['it-codec'] || '';
+
+		if (source !== cachedSource) {
+			cachedSource = source;
+			cachedRegex = source ? new RegExp(source) : null;
 		}
+
+		return cachedRegex;
+	}
+
+	function isBlocked (mime) {
+		if (typeof mime !== 'string') { return false; }
+
+		var codecs = blockedCodecs();
+
+		if (codecs && codecs.test(mime)) { return true; }
+
 		if (localStorage['it-player30fps']) {
 			var match = /framerate=(\d+)/.exec(mime);
-			if (match && match[1] > 30) return '';
+
+			if (match && match[1] > 30) { return true; }
 		}
-		return callback.call(self, mime);
+
+		return false;
+	}
+
+	// MediaSource.isTypeSupported returns a boolean, canPlayType a string.
+	function patchIsTypeSupported (target) {
+		if (!target) { return; }
+
+		var original = target.isTypeSupported;
+
+		if (typeof original !== 'function') { return; }
+
+		target.isTypeSupported = function (mime) {
+			return isBlocked(mime) ? false : original.call(this, mime);
+		};
+	}
+
+	patchIsTypeSupported(window.MediaSource);
+	patchIsTypeSupported(window.ManagedMediaSource); // Safari
+
+	var canPlayType = HTMLMediaElement.prototype.canPlayType;
+
+	HTMLMediaElement.prototype.canPlayType = function (mime) {
+		return isBlocked(mime) ? '' : canPlayType.call(this, mime);
 	};
 
-	if (window.MediaSource) {
-		var isTypeSupported = window.MediaSource.isTypeSupported;
-		window.MediaSource.isTypeSupported = function (mime) {
-			return overwrite(this, isTypeSupported, mime);
-		}
+	var mediaCapabilities = navigator.mediaCapabilities;
+
+	if (mediaCapabilities && typeof mediaCapabilities.decodingInfo === 'function') {
+		var decodingInfo = mediaCapabilities.decodingInfo;
+
+		mediaCapabilities.decodingInfo = function (configuration) {
+			var video = configuration && configuration.video;
+
+			if (video && isBlocked(video.contentType)) {
+				return Promise.resolve({
+					supported: false,
+					smooth: false,
+					powerEfficient: false,
+					configuration: configuration
+				});
+			}
+
+			return decodingInfo.call(this, configuration);
+		};
 	}
-	var canPlayType = HTMLMediaElement.prototype.canPlayType;
-	HTMLMediaElement.prototype.canPlayType = function (mime) {
-		return overwrite(this, canPlayType, mime);
+}());
+
+/*--------------------------------------------------------------
+# CODEC SETTINGS -> localStorage
+----------------------------------------------------------------
+	The patch above runs before the settings arrive, so the codec
+	choice is mirrored into localStorage where it can read it.
+--------------------------------------------------------------*/
+ImprovedTube.updateCodecStorage = function () {
+	var codec = Object.keys(ImprovedTube.codecAtlas).reduce(function (all, key) {
+		return ImprovedTube.storage[key] ? ((all ? all + '|' : '') + ImprovedTube.codecAtlas[key]) : all;
+	}, '');
+
+	if (codec) {
+		if (localStorage['it-codec'] !== codec) { localStorage['it-codec'] = codec; }
+	} else if (localStorage['it-codec']) {
+		localStorage.removeItem('it-codec');
+	}
+};
+
+ImprovedTube.updateFramerateStorage = function () {
+	if (ImprovedTube.storage.player_60fps === false) {
+		if (!localStorage['it-player30fps']) { localStorage['it-player30fps'] = true; }
+	} else if (localStorage['it-player30fps']) {
+		localStorage.removeItem('it-player30fps');
 	}
 };
 
@@ -187,24 +281,8 @@ document.addEventListener('it-message-from-extension', function () {
 				ImprovedTube.playlistReversed = ImprovedTube.storage.playlist_reversed_active;
 			}
 
-			if (ImprovedTube.storage.block_vp9 || ImprovedTube.storage.block_av1 || ImprovedTube.storage.block_h264) {
-				let atlas = { block_vp9: 'vp9|vp09', block_h264: 'avc1', block_av1: 'av01' },
-					codec = Object.keys(atlas).reduce(function (all, key) {
-						return ImprovedTube.storage[key] ? ((all ? all + '|' : '') + atlas[key]) : all
-					}, '');
-				if (localStorage['it-codec'] != codec) {
-					localStorage['it-codec'] = codec;
-				}
-			} else if (localStorage['it-codec']) {
-				localStorage.removeItem('it-codec');
-			}
-			if (ImprovedTube.storage.player_60fps === false) {
-				if (!localStorage['it-player30fps']) {
-					localStorage['it-player30fps'] = true;
-				}
-			} else if (localStorage['it-player30fps']) {
-				localStorage.removeItem('it-player30fps');
-			}
+			ImprovedTube.updateCodecStorage();
+			ImprovedTube.updateFramerateStorage();
 
 			ImprovedTube.init();
 			ImprovedTube.blocklistInit();
@@ -221,21 +299,11 @@ document.addEventListener('it-message-from-extension', function () {
 			let camelized_key = message.camelizedKey;
 
 			ImprovedTube.storage[message.key] = message.value;
-			if (['block_vp9', 'block_h264', 'block_av1'].includes(message.key)) {
-				let atlas = { block_vp9: 'vp9|vp09', block_h264: 'avc1', block_av1: 'av01' }
-				localStorage['it-codec'] = Object.keys(atlas).reduce(function (all, key) {
-					return ImprovedTube.storage[key] ? ((all ? all + '|' : '') + atlas[key]) : all
-				}, '');
-				if (!localStorage['it-codec']) {
-					localStorage.removeItem('it-codec');
-				}
+			if (Object.prototype.hasOwnProperty.call(ImprovedTube.codecAtlas, message.key)) {
+				ImprovedTube.updateCodecStorage();
 			}
-			if (message.key === "player_60fps") {
-				if (ImprovedTube.storage.player_60fps === false) {
-					localStorage['it-player30fps'] = true;
-				} else {
-					localStorage.removeItem('it-player30fps');
-				}
+			if (message.key === 'player_60fps') {
+				ImprovedTube.updateFramerateStorage();
 			}
 			switch (camelized_key) {
 				case 'blocklist':
